@@ -1,0 +1,13 @@
+ This module will retrieve the pixel data required for the
+ controller, but it is a bit.. unconventional in how it does it.
+ When requested for the pixel coordinates, this module will
+ compute and find out the data required by retrieving the textures
+ plus colour data from the memory. However, in our original model,
+ timing issues occured since we only started accessing memory when
+ the pixel needed to be drawn. We counter this by retrieving one line
+ from memory at a time.
+ 
+ This has some issues when starting, but due to the clock speed we don't
+ really get any issues.
+
+module vga_render()
