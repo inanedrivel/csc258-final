@@ -1,7 +1,7 @@
 // Imagine working with the actual keyboard data.
 // This module converts w/e comes out of keyboard.v
 // into ascii codes when high.
- 
+ /*
 module asciiin(input PS2_CLK,
 					input PS2_DAT,
 					input clock,
@@ -28,3 +28,4 @@ begin
 end
 		
 endmodule
+*/

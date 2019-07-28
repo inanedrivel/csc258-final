@@ -1,0 +1,82 @@
+MIF/HEX Update report for tbuff
+Sun Jul 28 17:57:34 2019
+Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. MIF/HEX Update Summary
+  3. MIF/HEX Update Processed Files
+  4. MIF/HEX Update Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2018  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
+
+
+
++---------------------------------------------------------------+
+; MIF/HEX Update Summary                                        ;
++-----------------------+---------------------------------------+
+; MIF/HEX Update Status ; Successful - Sun Jul 28 17:57:34 2019 ;
+; Revision Name         ; tbuff                                 ;
+; Top-level Entity Name ; main                                  ;
+; Family                ; Cyclone V                             ;
+; Device                ; 5CSEMA5F31C6                          ;
++-----------------------+---------------------------------------+
+
+
++----------------------------------------------------+
+; MIF/HEX Update Processed Files                     ;
++----------------------------------------------------+
+; File Name                                          ;
++----------------------------------------------------+
+; /home/re4/git/csc258-final/char_data_l.mif         ;
+; /home/re4/git/csc258-final/char_data_s.mif         ;
+; /home/re4/git/csc258-final/s_initial_colour.mif    ;
+; /home/re4/git/csc258-final/s_initial_highlight.mif ;
+; /home/re4/git/csc258-final/s_initial_text.mif      ;
++----------------------------------------------------+
+
+
++-------------------------+
+; MIF/HEX Update Messages ;
++-------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime MIF/HEX Update
+    Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+    Info: Processing started: Sun Jul 28 17:57:30 2019
+Info: Command: quartus_cdb tbuff -c tbuff --update_mif
+Warning (39023): Can't find Memory Initialization File l_initial_text.mif -- skipped updates for this file
+Warning (39023): Can't find Memory Initialization File l_initial_colour.mif -- skipped updates for this file
+Warning (39023): Can't find Memory Initialization File l_initial_highlight.mif -- skipped updates for this file
+Info (39024): Processed the following Memory Initialization File(s)
+    Info (39025): Processed Memory Initialization File /home/re4/git/csc258-final/char_data_l.mif File: /home/re4/git/csc258-final/char_data_l.mif Line: 0
+    Info (39025): Processed Memory Initialization File /home/re4/git/csc258-final/char_data_s.mif File: /home/re4/git/csc258-final/char_data_s.mif Line: 0
+    Info (39025): Processed Memory Initialization File /home/re4/git/csc258-final/s_initial_colour.mif File: /home/re4/git/csc258-final/s_initial_colour.mif Line: 0
+    Info (39025): Processed Memory Initialization File /home/re4/git/csc258-final/s_initial_highlight.mif File: /home/re4/git/csc258-final/s_initial_highlight.mif Line: 0
+    Info (39025): Processed Memory Initialization File /home/re4/git/csc258-final/s_initial_text.mif File: /home/re4/git/csc258-final/s_initial_text.mif Line: 0
+Info: Quartus Prime MIF/HEX Update was successful. 0 errors, 3 warnings
+    Info: Peak virtual memory: 1310 megabytes
+    Info: Processing ended: Sun Jul 28 17:57:35 2019
+    Info: Elapsed time: 00:00:05
+    Info: Total CPU time (on all processors): 00:00:05
+
+

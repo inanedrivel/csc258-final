@@ -1,0 +1,75 @@
+# do tbuff_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 10.5b Lib Mapping Utility 2016.10 Oct  5 2016
+# vmap work rtl_work 
+# Copying /opt/altera/18.1/modelsim_ase/linuxaloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vlog -vlog01compat -work work +incdir+/home/re4/git/258/vga-c3 {/home/re4/git/258/vga-c3/vga_render.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 18:33:30 on Jul 27,2019
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/re4/git/258/vga-c3" /home/re4/git/258/vga-c3/vga_render.v 
+# -- Compiling module vga_render
+# -- Compiling module getcharindexS
+# -- Compiling module getcharindexL
+# -- Compiling module getnextCharandRowS
+# -- Compiling module getnextCharandRowL
+# -- Compiling module mux6
+# -- Compiling module m48
+# -- Compiling module m96
+# -- Compiling module access8bit
+# -- Compiling module access6bitf48
+# -- Compiling module access6bitf96
+# -- Compiling module access16bit
+# -- Compiling module l25c
+# 
+# Top level modules:
+# 	vga_render
+# End time: 18:33:30 on Jul 27,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/re4/git/258/vga-c3 {/home/re4/git/258/vga-c3/vga_controller.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 18:33:30 on Jul 27,2019
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/re4/git/258/vga-c3" /home/re4/git/258/vga-c3/vga_controller.v 
+# -- Compiling module vga_controller
+# 
+# Top level modules:
+# 	vga_controller
+# End time: 18:33:30 on Jul 27,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/re4/git/258/vga-c3 {/home/re4/git/258/vga-c3/memory_controller.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 18:33:30 on Jul 27,2019
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/re4/git/258/vga-c3" /home/re4/git/258/vga-c3/memory_controller.v 
+# -- Compiling module memory_controller
+# -- Compiling module smallcoordstoaddr
+# -- Compiling module largecoordstoaddr
+# 
+# Top level modules:
+# 	memory_controller
+# End time: 18:33:30 on Jul 27,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/re4/git/258/vga-c3 {/home/re4/git/258/vga-c3/main.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 18:33:30 on Jul 27,2019
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/re4/git/258/vga-c3" /home/re4/git/258/vga-c3/main.v 
+# -- Compiling module main
+# ** Error (suppressible): /home/re4/git/258/vga-c3/main.v(51): (vlog-2388) 'vgascii' already declared in this scope (main).
+# ** Error (suppressible): /home/re4/git/258/vga-c3/main.v(52): (vlog-2388) 'vgx' already declared in this scope (main).
+# ** Error (suppressible): /home/re4/git/258/vga-c3/main.v(53): (vlog-2388) 'vgy' already declared in this scope (main).
+# ** Error (suppressible): /home/re4/git/258/vga-c3/main.v(54): (vlog-2388) 'vgclr' already declared in this scope (main).
+# ** Error (suppressible): /home/re4/git/258/vga-c3/main.v(55): (vlog-2388) 'vghl' already declared in this scope (main).
+# -- Compiling module hex_decoder
+# End time: 18:33:30 on Jul 27,2019, Elapsed time: 0:00:00
+# Errors: 5, Warnings: 0
+# ** Error: /opt/altera/18.1/modelsim_ase/linuxaloem/vlog failed.
+# Error in macro ./tbuff_run_msim_rtl_verilog.do line 11
+# /opt/altera/18.1/modelsim_ase/linuxaloem/vlog failed.
+#     while executing
+# "vlog -vlog01compat -work work +incdir+/home/re4/git/258/vga-c3 {/home/re4/git/258/vga-c3/main.v}"
+# 
+# stdin: <EOF>

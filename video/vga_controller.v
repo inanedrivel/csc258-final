@@ -18,6 +18,7 @@ module vga_controller(input vga_clock,
 							 output reg [9:0] VGA_B,
 							 output reg VGA_HS,
 							 output reg VGA_VS,
+							 output reg VGA_BLANK,
 							 output VGA_SYNC,
 							 output VGA_CLK); 
 	
@@ -38,7 +39,7 @@ module vga_controller(input vga_clock,
 	parameter C_HORZ_SYNC_END    = 10'd754; //(C_HORZ_SYNC_START + 96 - 1); 
 	parameter C_HORZ_TOTAL_COUNT = 10'd800;	
 		
-	defparam dontdrawout = 6'b0;
+	parameter dontdrawout = 6'b0;
 	
 	/*****************************************************************************/
 	/* Local Signals.                                                            */
@@ -137,27 +138,16 @@ module vga_controller(input vga_clock,
 		VGA_R <= 'b0;
 		VGA_G <= 'b0;
 		VGA_B <= 'b0;
-		if (MONOCHROME == "FALSE")
+		for (index = 8; index >= 0; index = index - 2)
 		begin
-			for (index = 8; index >= 0; index = index - 2)
+			for (sub_index = 1; sub_index >= 0; sub_index = sub_index - 1)
 			begin
-				for (sub_index = 1; sub_index >= 0; sub_index = sub_index - 1)
-				begin
-					VGA_R[sub_index+index] <= tc[sub_index + 4];
-					VGA_G[sub_index+index] <= tc[sub_index + 2];
-					VGA_B[sub_index+index] <= tc[sub_index];
-				end
-			end	
-		end
-		else
-		begin
-			for (index = 0; index < 10; index = index + 1)
-			begin
-				VGA_R[index] <= pixel_colour[0:0];
-				VGA_G[index] <= pixel_colour[0:0];
-				VGA_B[index] <= pixel_colour[0:0];
-			end	
-		end
+				VGA_R[sub_index+index] <= tc[sub_index + 4];
+				VGA_G[sub_index+index] <= tc[sub_index + 2];
+				VGA_B[sub_index+index] <= tc[sub_index];
+			end
+		end	
 	end
 
 endmodule
+

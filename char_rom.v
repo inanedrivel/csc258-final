@@ -10,8 +10,8 @@ module char_rom(input clock,
 					 input [6:0] ascii,
 					 output [255:0] lf,
 					 output [63:0] sf);
-	parameter CHAR_DATA_S = "char_data_s.mif"
-	parameter CHAR_DATA_L = "char_data_l.mif"
+	parameter CHAR_DATA_S = "char_data_s.mif";
+	parameter CHAR_DATA_L = "char_data_l.mif";
 	
 	altsyncram	CharInfoS (
 				.clock0 (clock),
@@ -20,7 +20,7 @@ module char_rom(input clock,
 				);
 	defparam
 		CharInfoS.WIDTH_A = 64,
-		CharInfoS.INTENDED_DEVICE_FAMILY = "Cyclone V",
+		// CharInfoS.INTENDED_DEVICE_FAMILY = "Cyclone V",
 		CharInfoS.OPERATION_MODE = "ROM",
 		CharInfoS.WIDTHAD_A = 7,
 		CharInfoS.NUMWORDS_A = 128,
@@ -34,7 +34,7 @@ module char_rom(input clock,
 				);
 	defparam
 		CharInfoL.WIDTH_A = 256,
-		CharInfoL.INTENDED_DEVICE_FAMILY = "Cyclone V",
+		// CharInfoL.INTENDED_DEVICE_FAMILY = "Cyclone V",
 		CharInfoL.OPERATION_MODE = "ROM",
 		CharInfoL.WIDTHAD_A = 7,
 		CharInfoL.NUMWORDS_A = 128,

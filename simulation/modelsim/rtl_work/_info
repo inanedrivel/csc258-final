@@ -1,0 +1,410 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/re4/git/258/vga-c3/simulation/modelsim
+vaccess16bit
+Z1 !s110 1564266810
+!i10b 1
+!s100 X:_8[c5d5HbP]^LP7e]A:3
+ISl>2HhhOzO8;Z2C8mN_Pc3
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1564266621
+Z4 8/home/re4/git/258/vga-c3/vga_render.v
+Z5 F/home/re4/git/258/vga-c3/vga_render.v
+L0 275
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1564266810.000000
+Z8 !s107 /home/re4/git/258/vga-c3/vga_render.v|
+Z9 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/re4/git/258/vga-c3|/home/re4/git/258/vga-c3/vga_render.v|
+!i113 1
+Z10 o-vlog01compat -work work
+Z11 !s92 -vlog01compat -work work +incdir+/home/re4/git/258/vga-c3
+Z12 tCvgOpt 0
+vaccess6bitf48
+R1
+!i10b 1
+!s100 _K@O5^Az[;IchOCNA[6@W1
+IW[5`gF?zgTMSimL<]]Z]:1
+R2
+R0
+R3
+R4
+R5
+L0 258
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+R12
+vaccess6bitf96
+R1
+!i10b 1
+!s100 gBl]Rfm<;?d9>YWQ=`Kj62
+Io_YMecjkib<6NWTb8?IIJ3
+R2
+R0
+R3
+R4
+R5
+L0 266
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+R12
+vaccess8bit
+R1
+!i10b 1
+!s100 =WJN27?B:UQ<cfN`Jj0b53
+IjHzARL<ZYb4@J5bW4>[Jg1
+R2
+R0
+R3
+R4
+R5
+L0 247
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+R12
+vgetcharindexL
+R1
+!i10b 1
+!s100 m=D4HoZk@JQAC32lna:Zg3
+I3Hj0<Rm_gOm5=PFKTRZ5R1
+R2
+R0
+R3
+R4
+R5
+L0 120
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+R12
+ngetcharindex@l
+vgetcharindexS
+R1
+!i10b 1
+!s100 V@Z43B1bzh`@Vzb?PHfcb0
+I:[WNFDjcKiPkmEImSG_9`3
+R2
+R0
+R3
+R4
+R5
+L0 112
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+R12
+ngetcharindex@s
+vgetnextCharandRowL
+R1
+!i10b 1
+!s100 >[7JH>aElFmA2^aIY]`nh0
+IXI<5d<c6on?HLI@533RCR0
+R2
+R0
+R3
+R4
+R5
+L0 167
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+R12
+ngetnext@charand@row@l
+vgetnextCharandRowS
+R1
+!i10b 1
+!s100 3[m@Q^>GHz]KH6HB7S@Sk3
+IG9RJ9Poz`4:ki3>nEYJYB2
+R2
+R0
+R3
+R4
+R5
+L0 128
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+R12
+ngetnext@charand@row@s
+vhex_decoder
+R1
+!i10b 1
+!s100 eQgFFU0ekg7M9KIPVe?@e3
+IgHA4l<2kamLecz>oVk@f=1
+R2
+R0
+w1564266379
+8/home/re4/git/258/vga-c3/main.v
+F/home/re4/git/258/vga-c3/main.v
+L0 130
+R6
+r1
+!s85 0
+31
+R7
+!s107 /home/re4/git/258/vga-c3/main.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/re4/git/258/vga-c3|/home/re4/git/258/vga-c3/main.v|
+!i113 1
+R10
+R11
+R12
+vl25c
+R1
+!i10b 1
+!s100 Qdf;ElDl3TKYYT3z39A8i2
+I@O;W?8SV4XK<f6Ok^SLoS3
+R2
+R0
+R3
+R4
+R5
+L0 294
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+R12
+vlargecoordstoaddr
+R1
+!i10b 1
+!s100 o6H@B07moY7`hI32FQCiV2
+INo]lZe0YaWAEZ=[I7N8FX2
+R2
+R0
+Z13 w1564263370
+Z14 8/home/re4/git/258/vga-c3/memory_controller.v
+Z15 F/home/re4/git/258/vga-c3/memory_controller.v
+L0 320
+R6
+r1
+!s85 0
+31
+R7
+Z16 !s107 /home/re4/git/258/vga-c3/memory_controller.v|
+Z17 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/re4/git/258/vga-c3|/home/re4/git/258/vga-c3/memory_controller.v|
+!i113 1
+R10
+R11
+R12
+vm48
+R1
+!i10b 1
+!s100 ;]RF?PL5X:WcLQYNWIY^81
+IeLkmPGhTQcEXk>=B=LOSn0
+R2
+R0
+R3
+R4
+R5
+L0 218
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+R12
+vm96
+R1
+!i10b 1
+!s100 g5:Fa@^<OMS2_08e01B3^0
+I9cNN`Y9G<M4d6<gOD@nQj2
+R2
+R0
+R3
+R4
+R5
+L0 235
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+R12
+vmemory_controller
+R1
+!i10b 1
+!s100 Q<eKYD8Wg0N^P7P@XWfL@2
+IE;zjMTRM:F9OgJNkdkCP20
+R2
+R0
+R13
+R14
+R15
+L0 18
+R6
+r1
+!s85 0
+31
+R7
+R16
+R17
+!i113 1
+R10
+R11
+R12
+vmux6
+R1
+!i10b 1
+!s100 RJY;PV2c`3DEGQ9WfeQU;2
+I@nfoH<TB3Gc63PBX=4Y8c0
+R2
+R0
+R3
+R4
+R5
+L0 206
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+R12
+vsmallcoordstoaddr
+R1
+!i10b 1
+!s100 oj3fBT7TnROc<Jmo[i`<k1
+ImW12FDz1LTF`Ea>9>iO3X0
+R2
+R0
+R13
+R14
+R15
+L0 304
+R6
+r1
+!s85 0
+31
+R7
+R16
+R17
+!i113 1
+R10
+R11
+R12
+vvga_controller
+R1
+!i10b 1
+!s100 LEi5TJ>lAomW2cYZ2@CVV3
+IE]TBBD1XK`gX?C>`ibW^02
+R2
+R0
+w1564264332
+8/home/re4/git/258/vga-c3/vga_controller.v
+F/home/re4/git/258/vga-c3/vga_controller.v
+L0 9
+R6
+r1
+!s85 0
+31
+R7
+!s107 /home/re4/git/258/vga-c3/vga_controller.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/re4/git/258/vga-c3|/home/re4/git/258/vga-c3/vga_controller.v|
+!i113 1
+R10
+R11
+R12
+vvga_render
+R1
+!i10b 1
+!s100 42L^8dS5h22z7a614_gCF0
+IoDPH@zJ9AZfGl`XQ]C2=c3
+R2
+R0
+R3
+R4
+R5
+L0 15
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+R12

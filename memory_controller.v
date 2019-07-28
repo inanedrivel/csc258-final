@@ -30,21 +30,22 @@ module memory_controller(input sL,
 								 input rclock,
 								 input [6:0] rex,
 								 input [5:0] rey,
+								 output DEBUG,
 								 output reg [6:0] rascii,
 								 output reg [5:0] rcolour,
 								 output reg rhighlight
 								 );
 	parameter S_INITIAL_HIGHLIGHT = "s_initial_highlight.mif";
 	parameter S_INITIAL_COLOUR = "s_initial_colour.mif";
-	parameter S_INITIAL_ASCII = "s_initial_ascii.mif";
+	parameter S_INITIAL_ASCII = "s_initial_text.mif";
 	parameter L_INITIAL_HIGHLIGHT = "l_initial_highlight.mif";
 	parameter L_INITIAL_COLOUR = "l_initial_colour.mif";
-	parameter L_INITIAL_ASCII = "l_initial_ascii.mif";
+	parameter L_INITIAL_ASCII = "l_initial_text.mif";
 
 								
-	defparam NIL = 7'b0000000;
-	defparam NCLR = 6'b111111;
-	defparam NHL = 1'b1;
+	parameter NIL = 7'b0000000;
+	parameter NCLR = 6'b111111;
+	parameter NHL = 1'b1;
 	reg wtens, htens, wtenl, htenl;
 	wire [12:0] waddrs, haddrs, raddrs;
 	wire [10:0] waddrl, haddrl, raddrl;
@@ -56,7 +57,7 @@ module memory_controller(input sL,
 	largecoordstoaddr wcl(wrx, wry, waddrl);
 	largecoordstoaddr hcl(hix, hiy, haddrl);
 	largecoordstoaddr rcl(rex, rey, raddrl);
-
+   //assign DEBUG = raddrs;
    /* write enable logic so we know which chip to go to */	
 	always @(*)
 	begin
@@ -85,7 +86,7 @@ module memory_controller(input sL,
 	begin
 		if(sL == 1'b1) begin
 			/* enable large IO */
-			if (raddrl == 11b11111111111) begin
+			if (raddrl == 11'b11111111111) begin
 				rascii <= NIL;
 				rcolour <= NCLR;
 				rhighlight <= NHL; 
@@ -99,7 +100,7 @@ module memory_controller(input sL,
 		end
 		else
 		begin 
-			if (raddrl == 13b1111111111111) begin
+			if (raddrl == 13'b1111111111111) begin
 				rascii <= NIL;
 				rcolour <= NCLR;
 				rhighlight <= NHL; 
@@ -134,7 +135,7 @@ module memory_controller(input sL,
 	defparam
 		TextMemoryS.WIDTH_A = 7,
 		TextMemoryS.WIDTH_B = 7,
-		TextMemoryS.INTENDED_DEVICE_FAMILY = "Cyclone V",
+		// TextMemoryS.INTENDED_DEVICE_FAMILY = "Cyclone V",
 		TextMemoryS.OPERATION_MODE = "DUAL_PORT",
 		TextMemoryS.WIDTHAD_A = 13,
 		TextMemoryS.NUMWORDS_A = 4800,
@@ -164,7 +165,7 @@ module memory_controller(input sL,
 	defparam
 		ColourMemoryS.WIDTH_A = 6,
 		ColourMemoryS.WIDTH_B = 6,
-		ColourMemoryS.INTENDED_DEVICE_FAMILY = "Cyclone V",
+		// ColourMemoryS.INTENDED_DEVICE_FAMILY = "Cyclone V",
 		ColourMemoryS.OPERATION_MODE = "DUAL_PORT",
 		ColourMemoryS.WIDTHAD_A = 13,
 		ColourMemoryS.NUMWORDS_A = 4800,
@@ -194,7 +195,7 @@ module memory_controller(input sL,
 	defparam
 		HighlightMemoryS.WIDTH_A = 1,
 		HighlightMemoryS.WIDTH_B = 1,
-		HighlightMemoryS.INTENDED_DEVICE_FAMILY = "Cyclone V",
+		// HighlightMemoryS.INTENDED_DEVICE_FAMILY = "Cyclone V",
 		HighlightMemoryS.OPERATION_MODE = "DUAL_PORT",
 		HighlightMemoryS.WIDTHAD_A = 13,
 		HighlightMemoryS.NUMWORDS_A = 4800,
@@ -223,7 +224,7 @@ altsyncram	TextMemoryL (
 	defparam
 		TextMemoryL.WIDTH_A = 7,
 		TextMemoryL.WIDTH_B = 7,
-		TextMemoryL.INTENDED_DEVICE_FAMILY = "Cyclone V",
+		// TextMemoryL.INTENDED_DEVICE_FAMILY = "Cyclone V",
 		TextMemoryL.OPERATION_MODE = "DUAL_PORT",
 		TextMemoryL.WIDTHAD_A = 11,
 		TextMemoryL.NUMWORDS_A = 1200,
@@ -253,7 +254,7 @@ altsyncram	TextMemoryL (
 	defparam
 		ColourMemoryL.WIDTH_A = 6,
 		ColourMemoryL.WIDTH_B = 6,
-		ColourMemoryL.INTENDED_DEVICE_FAMILY = "Cyclone V",
+		// ColourMemoryL.INTENDED_DEVICE_FAMILY = "Cyclone V",
 		ColourMemoryL.OPERATION_MODE = "DUAL_PORT",
 		ColourMemoryL.WIDTHAD_A = 11,
 		ColourMemoryL.NUMWORDS_A = 1200,
@@ -283,7 +284,7 @@ altsyncram	TextMemoryL (
 	defparam
 		HighlightMemoryL.WIDTH_A = 1,
 		HighlightMemoryL.WIDTH_B = 1,
-		HighlightMemoryL.INTENDED_DEVICE_FAMILY = "Cyclone V",
+		// HighlightMemoryL.INTENDED_DEVICE_FAMILY = "Cyclone V",
 		HighlightMemoryL.OPERATION_MODE = "DUAL_PORT",
 		HighlightMemoryL.WIDTHAD_A = 11,
 		HighlightMemoryL.NUMWORDS_A = 1200,

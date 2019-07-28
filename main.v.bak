@@ -1,0 +1,4 @@
+module Main(input CLOCK_50,
+				input [2:0] KEY,
+				input [7:0] SW, );
+endmodule
