@@ -3,99 +3,99 @@ Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow 1100mV 85C Model Setup 'CLOCK_50'
-Slack : -6.646
-TNS   : -2663.584
+Slack : -6.732
+TNS   : -2579.386
 
 Type  : Slow 1100mV 85C Model Setup 'l25c:delay|oclk'
-Slack : -3.000
-TNS   : -82.211
+Slack : -3.132
+TNS   : -101.955
 
 Type  : Slow 1100mV 85C Model Hold 'CLOCK_50'
-Slack : 0.330
+Slack : 0.415
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Hold 'l25c:delay|oclk'
-Slack : 0.752
+Slack : 0.688
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Minimum Pulse Width 'CLOCK_50'
 Slack : -2.174
-TNS   : -2759.035
+TNS   : -2752.987
 
 Type  : Slow 1100mV 85C Model Minimum Pulse Width 'l25c:delay|oclk'
 Slack : -0.394
-TNS   : -17.667
+TNS   : -20.209
 
 Type  : Slow 1100mV 0C Model Setup 'CLOCK_50'
-Slack : -6.455
-TNS   : -2542.751
+Slack : -6.506
+TNS   : -2481.938
 
 Type  : Slow 1100mV 0C Model Setup 'l25c:delay|oclk'
-Slack : -2.874
-TNS   : -80.154
+Slack : -3.014
+TNS   : -99.343
 
 Type  : Slow 1100mV 0C Model Hold 'CLOCK_50'
-Slack : 0.254
+Slack : 0.178
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Hold 'l25c:delay|oclk'
-Slack : 0.701
+Slack : 0.657
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Minimum Pulse Width 'CLOCK_50'
 Slack : -2.174
-TNS   : -2757.891
+TNS   : -2751.771
 
 Type  : Slow 1100mV 0C Model Minimum Pulse Width 'l25c:delay|oclk'
 Slack : -0.394
-TNS   : -17.440
+TNS   : -19.823
 
 Type  : Fast 1100mV 85C Model Setup 'CLOCK_50'
-Slack : -3.617
-TNS   : -1464.214
+Slack : -3.524
+TNS   : -1389.914
 
 Type  : Fast 1100mV 85C Model Setup 'l25c:delay|oclk'
-Slack : -1.613
-TNS   : -41.602
+Slack : -1.596
+TNS   : -51.470
 
 Type  : Fast 1100mV 85C Model Hold 'CLOCK_50'
-Slack : 0.115
+Slack : 0.110
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Hold 'l25c:delay|oclk'
-Slack : 0.333
+Slack : 0.374
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Minimum Pulse Width 'CLOCK_50'
 Slack : -2.174
-TNS   : -2673.196
+TNS   : -2671.914
 
 Type  : Fast 1100mV 85C Model Minimum Pulse Width 'l25c:delay|oclk'
-Slack : 0.072
+Slack : 0.061
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Setup 'CLOCK_50'
-Slack : -3.056
-TNS   : -1228.159
+Slack : -3.028
+TNS   : -1166.394
 
 Type  : Fast 1100mV 0C Model Setup 'l25c:delay|oclk'
-Slack : -1.392
-TNS   : -36.127
+Slack : -1.386
+TNS   : -44.242
 
 Type  : Fast 1100mV 0C Model Hold 'CLOCK_50'
-Slack : -0.077
-TNS   : -2.818
+Slack : -0.087
+TNS   : -1.407
 
 Type  : Fast 1100mV 0C Model Hold 'l25c:delay|oclk'
-Slack : 0.308
+Slack : 0.342
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Minimum Pulse Width 'CLOCK_50'
 Slack : -2.174
-TNS   : -2674.399
+TNS   : -2673.259
 
 Type  : Fast 1100mV 0C Model Minimum Pulse Width 'l25c:delay|oclk'
-Slack : 0.097
+Slack : 0.086
 TNS   : 0.000
 
 ------------------------------------------------------------

@@ -6,7 +6,7 @@ JedecChain;
 	P ActionCode(Ign)
 		Device PartName(SOCVHPS) MfrSpec(OpMask(0));
 	P ActionCode(Cfg)
-		Device PartName(5CSEMA5F31) Path("/home/re4/git/258/vga-c3/") File("tbuff.sof") MfrSpec(OpMask(1));
+		Device PartName(5CSEMA5F31) Path("/home/re4/git/csc258-final/output_files/") File("tbuff.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 

@@ -1,0 +1,12 @@
+module edit_mode(input sL,
+					  input clk,
+					  input [6:0] asciiin,
+					  input asciiready,
+					  output reg [6:0] cx,
+					  output reg [5:0] cy,
+					  output reg [5:0] ccol,
+					  output reg [6:0] asciiout,
+					  output reg cwren,
+					  output reg [6:0] hx,
+					  output reg hy,
+					  output hen);

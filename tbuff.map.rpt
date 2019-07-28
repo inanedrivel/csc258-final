@@ -1,5 +1,5 @@
 Analysis & Synthesis report for tbuff
-Sun Jul 28 17:25:17 2019
+Sun Jul 28 17:11:40 2019
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -41,15 +41,13 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
  33. Port Connectivity Checks: "vga_render:va|m96:m96l"
  34. Port Connectivity Checks: "vga_render:va|getcharindexS:gciS"
  35. Port Connectivity Checks: "vga_render:va|getcharindexL:gciL"
- 36. Port Connectivity Checks: "vga_render:va|access6bitf96:a6b96sl"
- 37. Port Connectivity Checks: "vga_render:va|access6bitf48:a6b48sl"
- 38. Port Connectivity Checks: "vga_render:va|access6bitf96:a6b96l"
- 39. Port Connectivity Checks: "vga_render:va|access6bitf48:a6b48l"
- 40. Port Connectivity Checks: "hex_decoder:h1"
- 41. Port Connectivity Checks: "memory_controller:memctrl"
- 42. Post-Synthesis Netlist Statistics for Top Partition
- 43. Elapsed Time Per Partition
- 44. Analysis & Synthesis Messages
+ 36. Port Connectivity Checks: "vga_render:va|access6bitf96:a6b96l"
+ 37. Port Connectivity Checks: "vga_render:va|access6bitf48:a6b48l"
+ 38. Port Connectivity Checks: "hex_decoder:h1"
+ 39. Port Connectivity Checks: "memory_controller:memctrl"
+ 40. Post-Synthesis Netlist Statistics for Top Partition
+ 41. Elapsed Time Per Partition
+ 42. Analysis & Synthesis Messages
 
 
 
@@ -75,13 +73,13 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Sun Jul 28 17:25:17 2019       ;
+; Analysis & Synthesis Status     ; Successful - Sun Jul 28 17:11:40 2019       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; tbuff                                       ;
 ; Top-level Entity Name           ; main                                        ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 199                                         ;
+; Total registers                 ; 187                                         ;
 ; Total pins                      ; 98                                          ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 124,960                                     ;
@@ -205,16 +203,16 @@ refer to the applicable agreement for further details.
 +----------------------------------+-----------------+----------------------------------+------------------------------------------------------------------------+---------+
 ; File Name with User-Entered Path ; Used in Netlist ; File Type                        ; File Name with Absolute Path                                           ; Library ;
 +----------------------------------+-----------------+----------------------------------+------------------------------------------------------------------------+---------+
-; vga_render.v                     ; yes             ; User Verilog HDL File            ; /home/re4/git/csc258-final/vga_render.v                                ;         ;
-; vga_controller.v                 ; yes             ; User Verilog HDL File            ; /home/re4/git/csc258-final/vga_controller.v                            ;         ;
-; s_initial_text.mif               ; yes             ; User Memory Initialization File  ; /home/re4/git/csc258-final/s_initial_text.mif                          ;         ;
-; s_initial_highlight.mif          ; yes             ; User Memory Initialization File  ; /home/re4/git/csc258-final/s_initial_highlight.mif                     ;         ;
-; s_initial_colour.mif             ; yes             ; User Memory Initialization File  ; /home/re4/git/csc258-final/s_initial_colour.mif                        ;         ;
-; memory_controller.v              ; yes             ; User Verilog HDL File            ; /home/re4/git/csc258-final/memory_controller.v                         ;         ;
-; main.v                           ; yes             ; User Verilog HDL File            ; /home/re4/git/csc258-final/main.v                                      ;         ;
-; char_rom.v                       ; yes             ; User Verilog HDL File            ; /home/re4/git/csc258-final/char_rom.v                                  ;         ;
-; char_data_s.mif                  ; yes             ; User Memory Initialization File  ; /home/re4/git/csc258-final/char_data_s.mif                             ;         ;
-; char_data_l.mif                  ; yes             ; User Memory Initialization File  ; /home/re4/git/csc258-final/char_data_l.mif                             ;         ;
+; vga_render.v                     ; yes             ; User Verilog HDL File            ; /home/re4/git/258/vga-c3/vga_render.v                                  ;         ;
+; vga_controller.v                 ; yes             ; User Verilog HDL File            ; /home/re4/git/258/vga-c3/vga_controller.v                              ;         ;
+; s_initial_text.mif               ; yes             ; User Memory Initialization File  ; /home/re4/git/258/vga-c3/s_initial_text.mif                            ;         ;
+; s_initial_highlight.mif          ; yes             ; User Memory Initialization File  ; /home/re4/git/258/vga-c3/s_initial_highlight.mif                       ;         ;
+; s_initial_colour.mif             ; yes             ; User Memory Initialization File  ; /home/re4/git/258/vga-c3/s_initial_colour.mif                          ;         ;
+; memory_controller.v              ; yes             ; User Verilog HDL File            ; /home/re4/git/258/vga-c3/memory_controller.v                           ;         ;
+; main.v                           ; yes             ; User Verilog HDL File            ; /home/re4/git/258/vga-c3/main.v                                        ;         ;
+; char_rom.v                       ; yes             ; User Verilog HDL File            ; /home/re4/git/258/vga-c3/char_rom.v                                    ;         ;
+; char_data_s.mif                  ; yes             ; User Memory Initialization File  ; /home/re4/git/258/vga-c3/char_data_s.mif                               ;         ;
+; char_data_l.mif                  ; yes             ; User Memory Initialization File  ; /home/re4/git/258/vga-c3/char_data_l.mif                               ;         ;
 ; altsyncram.tdf                   ; yes             ; Megafunction                     ; /opt/altera/18.1/quartus/libraries/megafunctions/altsyncram.tdf        ;         ;
 ; stratix_ram_block.inc            ; yes             ; Megafunction                     ; /opt/altera/18.1/quartus/libraries/megafunctions/stratix_ram_block.inc ;         ;
 ; lpm_mux.inc                      ; yes             ; Megafunction                     ; /opt/altera/18.1/quartus/libraries/megafunctions/lpm_mux.inc           ;         ;
@@ -224,14 +222,14 @@ refer to the applicable agreement for further details.
 ; altrom.inc                       ; yes             ; Megafunction                     ; /opt/altera/18.1/quartus/libraries/megafunctions/altrom.inc            ;         ;
 ; altram.inc                       ; yes             ; Megafunction                     ; /opt/altera/18.1/quartus/libraries/megafunctions/altram.inc            ;         ;
 ; altdpram.inc                     ; yes             ; Megafunction                     ; /opt/altera/18.1/quartus/libraries/megafunctions/altdpram.inc          ;         ;
-; db/altsyncram_t2n1.tdf           ; yes             ; Auto-Generated Megafunction      ; /home/re4/git/csc258-final/db/altsyncram_t2n1.tdf                      ;         ;
-; db/altsyncram_a9n1.tdf           ; yes             ; Auto-Generated Megafunction      ; /home/re4/git/csc258-final/db/altsyncram_a9n1.tdf                      ;         ;
-; db/altsyncram_4in1.tdf           ; yes             ; Auto-Generated Megafunction      ; /home/re4/git/csc258-final/db/altsyncram_4in1.tdf                      ;         ;
-; db/altsyncram_02n1.tdf           ; yes             ; Auto-Generated Megafunction      ; /home/re4/git/csc258-final/db/altsyncram_02n1.tdf                      ;         ;
-; db/altsyncram_d8n1.tdf           ; yes             ; Auto-Generated Megafunction      ; /home/re4/git/csc258-final/db/altsyncram_d8n1.tdf                      ;         ;
-; db/altsyncram_7hn1.tdf           ; yes             ; Auto-Generated Megafunction      ; /home/re4/git/csc258-final/db/altsyncram_7hn1.tdf                      ;         ;
-; db/altsyncram_g731.tdf           ; yes             ; Auto-Generated Megafunction      ; /home/re4/git/csc258-final/db/altsyncram_g731.tdf                      ;         ;
-; db/altsyncram_s831.tdf           ; yes             ; Auto-Generated Megafunction      ; /home/re4/git/csc258-final/db/altsyncram_s831.tdf                      ;         ;
+; db/altsyncram_t2n1.tdf           ; yes             ; Auto-Generated Megafunction      ; /home/re4/git/258/vga-c3/db/altsyncram_t2n1.tdf                        ;         ;
+; db/altsyncram_a9n1.tdf           ; yes             ; Auto-Generated Megafunction      ; /home/re4/git/258/vga-c3/db/altsyncram_a9n1.tdf                        ;         ;
+; db/altsyncram_4in1.tdf           ; yes             ; Auto-Generated Megafunction      ; /home/re4/git/258/vga-c3/db/altsyncram_4in1.tdf                        ;         ;
+; db/altsyncram_02n1.tdf           ; yes             ; Auto-Generated Megafunction      ; /home/re4/git/258/vga-c3/db/altsyncram_02n1.tdf                        ;         ;
+; db/altsyncram_d8n1.tdf           ; yes             ; Auto-Generated Megafunction      ; /home/re4/git/258/vga-c3/db/altsyncram_d8n1.tdf                        ;         ;
+; db/altsyncram_7hn1.tdf           ; yes             ; Auto-Generated Megafunction      ; /home/re4/git/258/vga-c3/db/altsyncram_7hn1.tdf                        ;         ;
+; db/altsyncram_g731.tdf           ; yes             ; Auto-Generated Megafunction      ; /home/re4/git/258/vga-c3/db/altsyncram_g731.tdf                        ;         ;
+; db/altsyncram_s831.tdf           ; yes             ; Auto-Generated Megafunction      ; /home/re4/git/258/vga-c3/db/altsyncram_s831.tdf                        ;         ;
 +----------------------------------+-----------------+----------------------------------+------------------------------------------------------------------------+---------+
 
 
@@ -240,16 +238,16 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+----------------+
 ; Resource                                    ; Usage          ;
 +---------------------------------------------+----------------+
-; Estimate of Logic utilization (ALMs needed) ; 446            ;
+; Estimate of Logic utilization (ALMs needed) ; 441            ;
 ;                                             ;                ;
-; Combinational ALUT usage for logic          ; 560            ;
+; Combinational ALUT usage for logic          ; 557            ;
 ;     -- 7 input functions                    ; 1              ;
-;     -- 6 input functions                    ; 328            ;
-;     -- 5 input functions                    ; 42             ;
-;     -- 4 input functions                    ; 72             ;
-;     -- <=3 input functions                  ; 117            ;
+;     -- 6 input functions                    ; 322            ;
+;     -- 5 input functions                    ; 54             ;
+;     -- 4 input functions                    ; 71             ;
+;     -- <=3 input functions                  ; 109            ;
 ;                                             ;                ;
-; Dedicated logic registers                   ; 199            ;
+; Dedicated logic registers                   ; 187            ;
 ;                                             ;                ;
 ; I/O pins                                    ; 98             ;
 ; Total MLAB memory bits                      ; 0              ;
@@ -258,9 +256,9 @@ refer to the applicable agreement for further details.
 ; Total DSP Blocks                            ; 0              ;
 ;                                             ;                ;
 ; Maximum fan-out node                        ; CLOCK_50~input ;
-; Maximum fan-out                             ; 521            ;
-; Total fan-out                               ; 6518           ;
-; Average fan-out                             ; 4.99           ;
+; Maximum fan-out                             ; 509            ;
+; Total fan-out                               ; 6479           ;
+; Average fan-out                             ; 5.02           ;
 +---------------------------------------------+----------------+
 
 
@@ -269,7 +267,7 @@ refer to the applicable agreement for further details.
 +----------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------------------------------------------------------------------+--------------------+--------------+
 ; Compilation Hierarchy Node                   ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                        ; Entity Name        ; Library Name ;
 +----------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------------------------------------------------------------------+--------------------+--------------+
-; |main                                        ; 560 (1)             ; 199 (0)                   ; 124960            ; 0          ; 98   ; 0            ; |main                                                                                      ; main               ; work         ;
+; |main                                        ; 557 (1)             ; 187 (0)                   ; 124960            ; 0          ; 98   ; 0            ; |main                                                                                      ; main               ; work         ;
 ;    |hex_decoder:h0|                          ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|hex_decoder:h0                                                                       ; hex_decoder        ; work         ;
 ;    |hex_decoder:h1|                          ; 4 (4)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|hex_decoder:h1                                                                       ; hex_decoder        ; work         ;
 ;    |hex_decoder:h2|                          ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|hex_decoder:h2                                                                       ; hex_decoder        ; work         ;
@@ -292,7 +290,7 @@ refer to the applicable agreement for further details.
 ;          |altsyncram_t2n1:auto_generated|    ; 0 (0)               ; 0 (0)                     ; 33600             ; 0          ; 0    ; 0            ; |main|memory_controller:memctrl|altsyncram:TextMemoryS|altsyncram_t2n1:auto_generated      ; altsyncram_t2n1    ; work         ;
 ;       |largecoordstoaddr:rcl|                ; 35 (35)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|memory_controller:memctrl|largecoordstoaddr:rcl                                      ; largecoordstoaddr  ; work         ;
 ;       |smallcoordstoaddr:rcs|                ; 39 (39)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|memory_controller:memctrl|smallcoordstoaddr:rcs                                      ; smallcoordstoaddr  ; work         ;
-;    |vga_render:va|                           ; 414 (106)           ; 198 (172)                 ; 40960             ; 0          ; 0    ; 0            ; |main|vga_render:va                                                                        ; vga_render         ; work         ;
+;    |vga_render:va|                           ; 411 (104)           ; 186 (160)                 ; 40960             ; 0          ; 0    ; 0            ; |main|vga_render:va                                                                        ; vga_render         ; work         ;
 ;       |access16bit:a16b|                     ; 80 (80)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|vga_render:va|access16bit:a16b                                                       ; access16bit        ; work         ;
 ;       |access8bit:a8b|                       ; 24 (24)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|vga_render:va|access8bit:a8b                                                         ; access8bit         ; work         ;
 ;       |char_rom:cr|                          ; 0 (0)               ; 0 (0)                     ; 40960             ; 0          ; 0    ; 0            ; |main|vga_render:va|char_rom:cr                                                            ; char_rom           ; work         ;
@@ -328,7 +326,7 @@ refer to the applicable agreement for further details.
 ;          |mux6:md|                           ; 6 (6)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|vga_render:va|m96:m96l|mux6:md                                                       ; mux6               ; work         ;
 ;          |mux6:me|                           ; 6 (6)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|vga_render:va|m96:m96l|mux6:me                                                       ; mux6               ; work         ;
 ;          |mux6:mf|                           ; 6 (6)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|vga_render:va|m96:m96l|mux6:mf                                                       ; mux6               ; work         ;
-;       |vga_controller:vcontrol|              ; 34 (34)             ; 26 (26)                   ; 0                 ; 0          ; 0    ; 0            ; |main|vga_render:va|vga_controller:vcontrol                                                ; vga_controller     ; work         ;
+;       |vga_controller:vcontrol|              ; 33 (33)             ; 26 (26)                   ; 0                 ; 0          ; 0    ; 0            ; |main|vga_render:va|vga_controller:vcontrol                                                ; vga_controller     ; work         ;
 +----------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------------------------------------------------------------------+--------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -354,12 +352,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 199   ;
+; Total registers                              ; 187   ;
 ; Number of registers using Synchronous Clear  ; 20    ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 21    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 176   ;
+; Number of registers using Clock Enable       ; 164   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -370,7 +368,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                              ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------+
 ; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |main|vga_render:va|vga_controller:vcontrol|yCounter[4] ;
-; 28:1               ; 6 bits    ; 108 LEs       ; 108 LEs              ; 0 LEs                  ; Yes        ; |main|vga_render:va|outcol[0]                           ;
+; 26:1               ; 6 bits    ; 102 LEs       ; 102 LEs              ; 0 LEs                  ; Yes        ; |main|vga_render:va|outcol[0]                           ;
 ; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |main|vga_render:va|getnextCharandRowS:nCaRS|row[2]     ;
 ; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |main|vga_render:va|getnextCharandRowL:nCaRL|row[1]     ;
 ; 3:1                ; 14 bits   ; 28 LEs        ; 28 LEs               ; 0 LEs                  ; No         ; |main|memory_controller:memctrl|rascii[1]               ;
@@ -1135,26 +1133,6 @@ Note: In order to hide this table in the UI and the text report file, please set
 +------+--------+----------+-------------------------------------------------------------------------------------+
 
 
-+-----------------------------------------------------------------+
-; Port Connectivity Checks: "vga_render:va|access6bitf96:a6b96sl" ;
-+---------------+-------+----------+------------------------------+
-; Port          ; Type  ; Severity ; Details                      ;
-+---------------+-------+----------+------------------------------+
-; inputin[3..1] ; Input ; Info     ; Stuck at VCC                 ;
-; inputin[0]    ; Input ; Info     ; Stuck at GND                 ;
-+---------------+-------+----------+------------------------------+
-
-
-+-----------------------------------------------------------------+
-; Port Connectivity Checks: "vga_render:va|access6bitf48:a6b48sl" ;
-+---------------+-------+----------+------------------------------+
-; Port          ; Type  ; Severity ; Details                      ;
-+---------------+-------+----------+------------------------------+
-; inputin[2..1] ; Input ; Info     ; Stuck at VCC                 ;
-; inputin[0]    ; Input ; Info     ; Stuck at GND                 ;
-+---------------+-------+----------+------------------------------+
-
-
 +----------------------------------------------------------------+
 ; Port Connectivity Checks: "vga_render:va|access6bitf96:a6b96l" ;
 +---------+-------+----------+-----------------------------------+
@@ -1205,14 +1183,14 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 199                         ;
+; arriav_ff             ; 187                         ;
 ;     CLR               ; 1                           ;
 ;     CLR SCLR          ; 10                          ;
-;     ENA               ; 166                         ;
+;     ENA               ; 154                         ;
 ;     ENA CLR SCLR      ; 10                          ;
 ;     plain             ; 12                          ;
 ; arriav_io_obuf        ; 2                           ;
-; arriav_lcell_comb     ; 570                         ;
+; arriav_lcell_comb     ; 567                         ;
 ;     arith             ; 68                          ;
 ;         0 data inputs ; 5                           ;
 ;         1 data inputs ; 32                          ;
@@ -1220,19 +1198,19 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;         5 data inputs ; 19                          ;
 ;     extend            ; 1                           ;
 ;         7 data inputs ; 1                           ;
-;     normal            ; 501                         ;
+;     normal            ; 498                         ;
 ;         0 data inputs ; 2                           ;
 ;         1 data inputs ; 10                          ;
-;         2 data inputs ; 31                          ;
-;         3 data inputs ; 47                          ;
-;         4 data inputs ; 60                          ;
-;         5 data inputs ; 23                          ;
-;         6 data inputs ; 328                         ;
+;         2 data inputs ; 30                          ;
+;         3 data inputs ; 40                          ;
+;         4 data inputs ; 59                          ;
+;         5 data inputs ; 35                          ;
+;         6 data inputs ; 322                         ;
 ; boundary_port         ; 98                          ;
 ; stratixv_ram_block    ; 348                         ;
 ;                       ;                             ;
 ; Max LUT depth         ; 10.60                       ;
-; Average LUT depth     ; 4.85                        ;
+; Average LUT depth     ; 4.92                        ;
 +-----------------------+-----------------------------+
 
 
@@ -1251,46 +1229,46 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Sun Jul 28 17:24:54 2019
+    Info: Processing started: Sun Jul 28 17:11:20 2019
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off tbuff -c tbuff
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
 Info (12021): Found 1 design units, including 1 entities, in source file vga_pll.v
-    Info (12023): Found entity 1: vga_pll File: /home/re4/git/csc258-final/vga_pll.v Line: 36
+    Info (12023): Found entity 1: vga_pll File: /home/re4/git/258/vga-c3/vga_pll.v Line: 36
 Info (12021): Found 13 design units, including 13 entities, in source file vga_render.v
-    Info (12023): Found entity 1: vga_render File: /home/re4/git/csc258-final/vga_render.v Line: 15
-    Info (12023): Found entity 2: getcharindexS File: /home/re4/git/csc258-final/vga_render.v Line: 147
-    Info (12023): Found entity 3: getcharindexL File: /home/re4/git/csc258-final/vga_render.v Line: 155
-    Info (12023): Found entity 4: getnextCharandRowS File: /home/re4/git/csc258-final/vga_render.v Line: 163
-    Info (12023): Found entity 5: getnextCharandRowL File: /home/re4/git/csc258-final/vga_render.v Line: 200
-    Info (12023): Found entity 6: mux6 File: /home/re4/git/csc258-final/vga_render.v Line: 237
-    Info (12023): Found entity 7: m48 File: /home/re4/git/csc258-final/vga_render.v Line: 249
-    Info (12023): Found entity 8: m96 File: /home/re4/git/csc258-final/vga_render.v Line: 272
-    Info (12023): Found entity 9: access8bit File: /home/re4/git/csc258-final/vga_render.v Line: 313
-    Info (12023): Found entity 10: access6bitf48 File: /home/re4/git/csc258-final/vga_render.v Line: 329
-    Info (12023): Found entity 11: access6bitf96 File: /home/re4/git/csc258-final/vga_render.v Line: 344
-    Info (12023): Found entity 12: access16bit File: /home/re4/git/csc258-final/vga_render.v Line: 368
-    Info (12023): Found entity 13: l25c File: /home/re4/git/csc258-final/vga_render.v Line: 392
+    Info (12023): Found entity 1: vga_render File: /home/re4/git/258/vga-c3/vga_render.v Line: 15
+    Info (12023): Found entity 2: getcharindexS File: /home/re4/git/258/vga-c3/vga_render.v Line: 130
+    Info (12023): Found entity 3: getcharindexL File: /home/re4/git/258/vga-c3/vga_render.v Line: 138
+    Info (12023): Found entity 4: getnextCharandRowS File: /home/re4/git/258/vga-c3/vga_render.v Line: 146
+    Info (12023): Found entity 5: getnextCharandRowL File: /home/re4/git/258/vga-c3/vga_render.v Line: 183
+    Info (12023): Found entity 6: mux6 File: /home/re4/git/258/vga-c3/vga_render.v Line: 220
+    Info (12023): Found entity 7: m48 File: /home/re4/git/258/vga-c3/vga_render.v Line: 232
+    Info (12023): Found entity 8: m96 File: /home/re4/git/258/vga-c3/vga_render.v Line: 255
+    Info (12023): Found entity 9: access8bit File: /home/re4/git/258/vga-c3/vga_render.v Line: 296
+    Info (12023): Found entity 10: access6bitf48 File: /home/re4/git/258/vga-c3/vga_render.v Line: 312
+    Info (12023): Found entity 11: access6bitf96 File: /home/re4/git/258/vga-c3/vga_render.v Line: 327
+    Info (12023): Found entity 12: access16bit File: /home/re4/git/258/vga-c3/vga_render.v Line: 351
+    Info (12023): Found entity 13: l25c File: /home/re4/git/258/vga-c3/vga_render.v Line: 375
 Info (12021): Found 1 design units, including 1 entities, in source file vga_controller.v
-    Info (12023): Found entity 1: vga_controller File: /home/re4/git/csc258-final/vga_controller.v Line: 9
+    Info (12023): Found entity 1: vga_controller File: /home/re4/git/258/vga-c3/vga_controller.v Line: 9
 Info (12021): Found 3 design units, including 3 entities, in source file memory_controller.v
-    Info (12023): Found entity 1: memory_controller File: /home/re4/git/csc258-final/memory_controller.v Line: 18
-    Info (12023): Found entity 2: smallcoordstoaddr File: /home/re4/git/csc258-final/memory_controller.v Line: 304
-    Info (12023): Found entity 3: largecoordstoaddr File: /home/re4/git/csc258-final/memory_controller.v Line: 320
+    Info (12023): Found entity 1: memory_controller File: /home/re4/git/258/vga-c3/memory_controller.v Line: 18
+    Info (12023): Found entity 2: smallcoordstoaddr File: /home/re4/git/258/vga-c3/memory_controller.v Line: 304
+    Info (12023): Found entity 3: largecoordstoaddr File: /home/re4/git/258/vga-c3/memory_controller.v Line: 320
 Info (12021): Found 2 design units, including 2 entities, in source file main.v
-    Info (12023): Found entity 1: main File: /home/re4/git/csc258-final/main.v Line: 1
-    Info (12023): Found entity 2: hex_decoder File: /home/re4/git/csc258-final/main.v Line: 134
+    Info (12023): Found entity 1: main File: /home/re4/git/258/vga-c3/main.v Line: 1
+    Info (12023): Found entity 2: hex_decoder File: /home/re4/git/258/vga-c3/main.v Line: 134
 Info (12021): Found 1 design units, including 1 entities, in source file char_rom.v
-    Info (12023): Found entity 1: char_rom File: /home/re4/git/csc258-final/char_rom.v Line: 9
+    Info (12023): Found entity 1: char_rom File: /home/re4/git/258/vga-c3/char_rom.v Line: 9
 Info (12127): Elaborating entity "main" for the top level hierarchy
-Warning (10036): Verilog HDL or VHDL warning at main.v(26): object "searchMode" assigned a value but never read File: /home/re4/git/csc258-final/main.v Line: 26
-Info (12128): Elaborating entity "l25c" for hierarchy "l25c:delay" File: /home/re4/git/csc258-final/main.v Line: 24
-Info (12128): Elaborating entity "memory_controller" for hierarchy "memory_controller:memctrl" File: /home/re4/git/csc258-final/main.v Line: 52
-Warning (10034): Output port "DEBUG" at memory_controller.v(33) has no driver File: /home/re4/git/csc258-final/memory_controller.v Line: 33
-Info (12128): Elaborating entity "smallcoordstoaddr" for hierarchy "memory_controller:memctrl|smallcoordstoaddr:wcs" File: /home/re4/git/csc258-final/memory_controller.v Line: 53
-Info (12128): Elaborating entity "largecoordstoaddr" for hierarchy "memory_controller:memctrl|largecoordstoaddr:wcl" File: /home/re4/git/csc258-final/memory_controller.v Line: 57
-Info (12128): Elaborating entity "altsyncram" for hierarchy "memory_controller:memctrl|altsyncram:TextMemoryS" File: /home/re4/git/csc258-final/memory_controller.v Line: 134
-Info (12130): Elaborated megafunction instantiation "memory_controller:memctrl|altsyncram:TextMemoryS" File: /home/re4/git/csc258-final/memory_controller.v Line: 134
-Info (12133): Instantiated megafunction "memory_controller:memctrl|altsyncram:TextMemoryS" with the following parameter: File: /home/re4/git/csc258-final/memory_controller.v Line: 134
+Warning (10036): Verilog HDL or VHDL warning at main.v(26): object "searchMode" assigned a value but never read File: /home/re4/git/258/vga-c3/main.v Line: 26
+Info (12128): Elaborating entity "l25c" for hierarchy "l25c:delay" File: /home/re4/git/258/vga-c3/main.v Line: 24
+Info (12128): Elaborating entity "memory_controller" for hierarchy "memory_controller:memctrl" File: /home/re4/git/258/vga-c3/main.v Line: 52
+Warning (10034): Output port "DEBUG" at memory_controller.v(33) has no driver File: /home/re4/git/258/vga-c3/memory_controller.v Line: 33
+Info (12128): Elaborating entity "smallcoordstoaddr" for hierarchy "memory_controller:memctrl|smallcoordstoaddr:wcs" File: /home/re4/git/258/vga-c3/memory_controller.v Line: 53
+Info (12128): Elaborating entity "largecoordstoaddr" for hierarchy "memory_controller:memctrl|largecoordstoaddr:wcl" File: /home/re4/git/258/vga-c3/memory_controller.v Line: 57
+Info (12128): Elaborating entity "altsyncram" for hierarchy "memory_controller:memctrl|altsyncram:TextMemoryS" File: /home/re4/git/258/vga-c3/memory_controller.v Line: 134
+Info (12130): Elaborated megafunction instantiation "memory_controller:memctrl|altsyncram:TextMemoryS" File: /home/re4/git/258/vga-c3/memory_controller.v Line: 134
+Info (12133): Instantiated megafunction "memory_controller:memctrl|altsyncram:TextMemoryS" with the following parameter: File: /home/re4/git/258/vga-c3/memory_controller.v Line: 134
     Info (12134): Parameter "WIDTH_A" = "7"
     Info (12134): Parameter "WIDTH_B" = "7"
     Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
@@ -1306,11 +1284,11 @@ Info (12133): Instantiated megafunction "memory_controller:memctrl|altsyncram:Te
     Info (12134): Parameter "POWER_UP_UNINITIALIZED" = "FALSE"
     Info (12134): Parameter "INIT_FILE" = "s_initial_text.mif"
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_t2n1.tdf
-    Info (12023): Found entity 1: altsyncram_t2n1 File: /home/re4/git/csc258-final/db/altsyncram_t2n1.tdf Line: 27
+    Info (12023): Found entity 1: altsyncram_t2n1 File: /home/re4/git/258/vga-c3/db/altsyncram_t2n1.tdf Line: 27
 Info (12128): Elaborating entity "altsyncram_t2n1" for hierarchy "memory_controller:memctrl|altsyncram:TextMemoryS|altsyncram_t2n1:auto_generated" File: /opt/altera/18.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 791
-Info (12128): Elaborating entity "altsyncram" for hierarchy "memory_controller:memctrl|altsyncram:ColourMemoryS" File: /home/re4/git/csc258-final/memory_controller.v Line: 164
-Info (12130): Elaborated megafunction instantiation "memory_controller:memctrl|altsyncram:ColourMemoryS" File: /home/re4/git/csc258-final/memory_controller.v Line: 164
-Info (12133): Instantiated megafunction "memory_controller:memctrl|altsyncram:ColourMemoryS" with the following parameter: File: /home/re4/git/csc258-final/memory_controller.v Line: 164
+Info (12128): Elaborating entity "altsyncram" for hierarchy "memory_controller:memctrl|altsyncram:ColourMemoryS" File: /home/re4/git/258/vga-c3/memory_controller.v Line: 164
+Info (12130): Elaborated megafunction instantiation "memory_controller:memctrl|altsyncram:ColourMemoryS" File: /home/re4/git/258/vga-c3/memory_controller.v Line: 164
+Info (12133): Instantiated megafunction "memory_controller:memctrl|altsyncram:ColourMemoryS" with the following parameter: File: /home/re4/git/258/vga-c3/memory_controller.v Line: 164
     Info (12134): Parameter "WIDTH_A" = "6"
     Info (12134): Parameter "WIDTH_B" = "6"
     Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
@@ -1326,11 +1304,11 @@ Info (12133): Instantiated megafunction "memory_controller:memctrl|altsyncram:Co
     Info (12134): Parameter "POWER_UP_UNINITIALIZED" = "FALSE"
     Info (12134): Parameter "INIT_FILE" = "s_initial_colour.mif"
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_a9n1.tdf
-    Info (12023): Found entity 1: altsyncram_a9n1 File: /home/re4/git/csc258-final/db/altsyncram_a9n1.tdf Line: 27
+    Info (12023): Found entity 1: altsyncram_a9n1 File: /home/re4/git/258/vga-c3/db/altsyncram_a9n1.tdf Line: 27
 Info (12128): Elaborating entity "altsyncram_a9n1" for hierarchy "memory_controller:memctrl|altsyncram:ColourMemoryS|altsyncram_a9n1:auto_generated" File: /opt/altera/18.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 791
-Info (12128): Elaborating entity "altsyncram" for hierarchy "memory_controller:memctrl|altsyncram:HighlightMemoryS" File: /home/re4/git/csc258-final/memory_controller.v Line: 194
-Info (12130): Elaborated megafunction instantiation "memory_controller:memctrl|altsyncram:HighlightMemoryS" File: /home/re4/git/csc258-final/memory_controller.v Line: 194
-Info (12133): Instantiated megafunction "memory_controller:memctrl|altsyncram:HighlightMemoryS" with the following parameter: File: /home/re4/git/csc258-final/memory_controller.v Line: 194
+Info (12128): Elaborating entity "altsyncram" for hierarchy "memory_controller:memctrl|altsyncram:HighlightMemoryS" File: /home/re4/git/258/vga-c3/memory_controller.v Line: 194
+Info (12130): Elaborated megafunction instantiation "memory_controller:memctrl|altsyncram:HighlightMemoryS" File: /home/re4/git/258/vga-c3/memory_controller.v Line: 194
+Info (12133): Instantiated megafunction "memory_controller:memctrl|altsyncram:HighlightMemoryS" with the following parameter: File: /home/re4/git/258/vga-c3/memory_controller.v Line: 194
     Info (12134): Parameter "WIDTH_A" = "1"
     Info (12134): Parameter "WIDTH_B" = "1"
     Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
@@ -1346,11 +1324,11 @@ Info (12133): Instantiated megafunction "memory_controller:memctrl|altsyncram:Hi
     Info (12134): Parameter "POWER_UP_UNINITIALIZED" = "FALSE"
     Info (12134): Parameter "INIT_FILE" = "s_initial_highlight.mif"
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_4in1.tdf
-    Info (12023): Found entity 1: altsyncram_4in1 File: /home/re4/git/csc258-final/db/altsyncram_4in1.tdf Line: 27
+    Info (12023): Found entity 1: altsyncram_4in1 File: /home/re4/git/258/vga-c3/db/altsyncram_4in1.tdf Line: 27
 Info (12128): Elaborating entity "altsyncram_4in1" for hierarchy "memory_controller:memctrl|altsyncram:HighlightMemoryS|altsyncram_4in1:auto_generated" File: /opt/altera/18.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 791
-Info (12128): Elaborating entity "altsyncram" for hierarchy "memory_controller:memctrl|altsyncram:TextMemoryL" File: /home/re4/git/csc258-final/memory_controller.v Line: 223
-Info (12130): Elaborated megafunction instantiation "memory_controller:memctrl|altsyncram:TextMemoryL" File: /home/re4/git/csc258-final/memory_controller.v Line: 223
-Info (12133): Instantiated megafunction "memory_controller:memctrl|altsyncram:TextMemoryL" with the following parameter: File: /home/re4/git/csc258-final/memory_controller.v Line: 223
+Info (12128): Elaborating entity "altsyncram" for hierarchy "memory_controller:memctrl|altsyncram:TextMemoryL" File: /home/re4/git/258/vga-c3/memory_controller.v Line: 223
+Info (12130): Elaborated megafunction instantiation "memory_controller:memctrl|altsyncram:TextMemoryL" File: /home/re4/git/258/vga-c3/memory_controller.v Line: 223
+Info (12133): Instantiated megafunction "memory_controller:memctrl|altsyncram:TextMemoryL" with the following parameter: File: /home/re4/git/258/vga-c3/memory_controller.v Line: 223
     Info (12134): Parameter "WIDTH_A" = "7"
     Info (12134): Parameter "WIDTH_B" = "7"
     Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
@@ -1366,11 +1344,11 @@ Info (12133): Instantiated megafunction "memory_controller:memctrl|altsyncram:Te
     Info (12134): Parameter "POWER_UP_UNINITIALIZED" = "FALSE"
     Info (12134): Parameter "INIT_FILE" = "l_initial_text.mif"
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_02n1.tdf
-    Info (12023): Found entity 1: altsyncram_02n1 File: /home/re4/git/csc258-final/db/altsyncram_02n1.tdf Line: 27
+    Info (12023): Found entity 1: altsyncram_02n1 File: /home/re4/git/258/vga-c3/db/altsyncram_02n1.tdf Line: 27
 Info (12128): Elaborating entity "altsyncram_02n1" for hierarchy "memory_controller:memctrl|altsyncram:TextMemoryL|altsyncram_02n1:auto_generated" File: /opt/altera/18.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 791
-Info (12128): Elaborating entity "altsyncram" for hierarchy "memory_controller:memctrl|altsyncram:ColourMemoryL" File: /home/re4/git/csc258-final/memory_controller.v Line: 253
-Info (12130): Elaborated megafunction instantiation "memory_controller:memctrl|altsyncram:ColourMemoryL" File: /home/re4/git/csc258-final/memory_controller.v Line: 253
-Info (12133): Instantiated megafunction "memory_controller:memctrl|altsyncram:ColourMemoryL" with the following parameter: File: /home/re4/git/csc258-final/memory_controller.v Line: 253
+Info (12128): Elaborating entity "altsyncram" for hierarchy "memory_controller:memctrl|altsyncram:ColourMemoryL" File: /home/re4/git/258/vga-c3/memory_controller.v Line: 253
+Info (12130): Elaborated megafunction instantiation "memory_controller:memctrl|altsyncram:ColourMemoryL" File: /home/re4/git/258/vga-c3/memory_controller.v Line: 253
+Info (12133): Instantiated megafunction "memory_controller:memctrl|altsyncram:ColourMemoryL" with the following parameter: File: /home/re4/git/258/vga-c3/memory_controller.v Line: 253
     Info (12134): Parameter "WIDTH_A" = "6"
     Info (12134): Parameter "WIDTH_B" = "6"
     Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
@@ -1386,11 +1364,11 @@ Info (12133): Instantiated megafunction "memory_controller:memctrl|altsyncram:Co
     Info (12134): Parameter "POWER_UP_UNINITIALIZED" = "FALSE"
     Info (12134): Parameter "INIT_FILE" = "l_initial_colour.mif"
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_d8n1.tdf
-    Info (12023): Found entity 1: altsyncram_d8n1 File: /home/re4/git/csc258-final/db/altsyncram_d8n1.tdf Line: 27
+    Info (12023): Found entity 1: altsyncram_d8n1 File: /home/re4/git/258/vga-c3/db/altsyncram_d8n1.tdf Line: 27
 Info (12128): Elaborating entity "altsyncram_d8n1" for hierarchy "memory_controller:memctrl|altsyncram:ColourMemoryL|altsyncram_d8n1:auto_generated" File: /opt/altera/18.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 791
-Info (12128): Elaborating entity "altsyncram" for hierarchy "memory_controller:memctrl|altsyncram:HighlightMemoryL" File: /home/re4/git/csc258-final/memory_controller.v Line: 283
-Info (12130): Elaborated megafunction instantiation "memory_controller:memctrl|altsyncram:HighlightMemoryL" File: /home/re4/git/csc258-final/memory_controller.v Line: 283
-Info (12133): Instantiated megafunction "memory_controller:memctrl|altsyncram:HighlightMemoryL" with the following parameter: File: /home/re4/git/csc258-final/memory_controller.v Line: 283
+Info (12128): Elaborating entity "altsyncram" for hierarchy "memory_controller:memctrl|altsyncram:HighlightMemoryL" File: /home/re4/git/258/vga-c3/memory_controller.v Line: 283
+Info (12130): Elaborated megafunction instantiation "memory_controller:memctrl|altsyncram:HighlightMemoryL" File: /home/re4/git/258/vga-c3/memory_controller.v Line: 283
+Info (12133): Instantiated megafunction "memory_controller:memctrl|altsyncram:HighlightMemoryL" with the following parameter: File: /home/re4/git/258/vga-c3/memory_controller.v Line: 283
     Info (12134): Parameter "WIDTH_A" = "1"
     Info (12134): Parameter "WIDTH_B" = "1"
     Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
@@ -1406,32 +1384,32 @@ Info (12133): Instantiated megafunction "memory_controller:memctrl|altsyncram:Hi
     Info (12134): Parameter "POWER_UP_UNINITIALIZED" = "FALSE"
     Info (12134): Parameter "INIT_FILE" = "l_initial_highlight.mif"
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_7hn1.tdf
-    Info (12023): Found entity 1: altsyncram_7hn1 File: /home/re4/git/csc258-final/db/altsyncram_7hn1.tdf Line: 27
+    Info (12023): Found entity 1: altsyncram_7hn1 File: /home/re4/git/258/vga-c3/db/altsyncram_7hn1.tdf Line: 27
 Info (12128): Elaborating entity "altsyncram_7hn1" for hierarchy "memory_controller:memctrl|altsyncram:HighlightMemoryL|altsyncram_7hn1:auto_generated" File: /opt/altera/18.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 791
-Info (12128): Elaborating entity "hex_decoder" for hierarchy "hex_decoder:h5" File: /home/re4/git/csc258-final/main.v Line: 61
-Info (12128): Elaborating entity "vga_render" for hierarchy "vga_render:va" File: /home/re4/git/csc258-final/main.v Line: 85
-Info (12128): Elaborating entity "access6bitf48" for hierarchy "vga_render:va|access6bitf48:a6b48l" File: /home/re4/git/csc258-final/vga_render.v Line: 44
-Warning (10230): Verilog HDL assignment warning at vga_render.v(334): truncated value with size 7 to match size of target (6) File: /home/re4/git/csc258-final/vga_render.v Line: 334
-Info (12128): Elaborating entity "access6bitf96" for hierarchy "vga_render:va|access6bitf96:a6b96l" File: /home/re4/git/csc258-final/vga_render.v Line: 45
-Warning (10230): Verilog HDL assignment warning at vga_render.v(349): truncated value with size 7 to match size of target (6) File: /home/re4/git/csc258-final/vga_render.v Line: 349
-Info (12128): Elaborating entity "getcharindexL" for hierarchy "vga_render:va|getcharindexL:gciL" File: /home/re4/git/csc258-final/vga_render.v Line: 60
-Info (12128): Elaborating entity "getcharindexS" for hierarchy "vga_render:va|getcharindexS:gciS" File: /home/re4/git/csc258-final/vga_render.v Line: 61
-Info (12128): Elaborating entity "getnextCharandRowL" for hierarchy "vga_render:va|getnextCharandRowL:nCaRL" File: /home/re4/git/csc258-final/vga_render.v Line: 62
-Info (12128): Elaborating entity "getnextCharandRowS" for hierarchy "vga_render:va|getnextCharandRowS:nCaRS" File: /home/re4/git/csc258-final/vga_render.v Line: 63
-Warning (10230): Verilog HDL assignment warning at vga_render.v(178): truncated value with size 32 to match size of target (6) File: /home/re4/git/csc258-final/vga_render.v Line: 178
-Warning (10230): Verilog HDL assignment warning at vga_render.v(181): truncated value with size 4 to match size of target (3) File: /home/re4/git/csc258-final/vga_render.v Line: 181
-Warning (10230): Verilog HDL assignment warning at vga_render.v(185): truncated value with size 32 to match size of target (6) File: /home/re4/git/csc258-final/vga_render.v Line: 185
-Warning (10230): Verilog HDL assignment warning at vga_render.v(192): truncated value with size 32 to match size of target (7) File: /home/re4/git/csc258-final/vga_render.v Line: 192
-Warning (10230): Verilog HDL assignment warning at vga_render.v(193): truncated value with size 32 to match size of target (6) File: /home/re4/git/csc258-final/vga_render.v Line: 193
-Info (12128): Elaborating entity "access8bit" for hierarchy "vga_render:va|access8bit:a8b" File: /home/re4/git/csc258-final/vga_render.v Line: 66
-Info (12128): Elaborating entity "access16bit" for hierarchy "vga_render:va|access16bit:a16b" File: /home/re4/git/csc258-final/vga_render.v Line: 67
-Info (12128): Elaborating entity "m96" for hierarchy "vga_render:va|m96:m96l" File: /home/re4/git/csc258-final/vga_render.v Line: 71
-Info (12128): Elaborating entity "mux6" for hierarchy "vga_render:va|m96:m96l|mux6:m0" File: /home/re4/git/csc258-final/vga_render.v Line: 279
-Info (12128): Elaborating entity "m48" for hierarchy "vga_render:va|m48:m48s" File: /home/re4/git/csc258-final/vga_render.v Line: 72
-Info (12128): Elaborating entity "char_rom" for hierarchy "vga_render:va|char_rom:cr" File: /home/re4/git/csc258-final/vga_render.v Line: 73
-Info (12128): Elaborating entity "altsyncram" for hierarchy "vga_render:va|char_rom:cr|altsyncram:CharInfoS" File: /home/re4/git/csc258-final/char_rom.v Line: 20
-Info (12130): Elaborated megafunction instantiation "vga_render:va|char_rom:cr|altsyncram:CharInfoS" File: /home/re4/git/csc258-final/char_rom.v Line: 20
-Info (12133): Instantiated megafunction "vga_render:va|char_rom:cr|altsyncram:CharInfoS" with the following parameter: File: /home/re4/git/csc258-final/char_rom.v Line: 20
+Info (12128): Elaborating entity "hex_decoder" for hierarchy "hex_decoder:h5" File: /home/re4/git/258/vga-c3/main.v Line: 61
+Info (12128): Elaborating entity "vga_render" for hierarchy "vga_render:va" File: /home/re4/git/258/vga-c3/main.v Line: 85
+Info (12128): Elaborating entity "access6bitf48" for hierarchy "vga_render:va|access6bitf48:a6b48l" File: /home/re4/git/258/vga-c3/vga_render.v Line: 42
+Warning (10230): Verilog HDL assignment warning at vga_render.v(317): truncated value with size 7 to match size of target (6) File: /home/re4/git/258/vga-c3/vga_render.v Line: 317
+Info (12128): Elaborating entity "access6bitf96" for hierarchy "vga_render:va|access6bitf96:a6b96l" File: /home/re4/git/258/vga-c3/vga_render.v Line: 43
+Warning (10230): Verilog HDL assignment warning at vga_render.v(332): truncated value with size 7 to match size of target (6) File: /home/re4/git/258/vga-c3/vga_render.v Line: 332
+Info (12128): Elaborating entity "getcharindexL" for hierarchy "vga_render:va|getcharindexL:gciL" File: /home/re4/git/258/vga-c3/vga_render.v Line: 54
+Info (12128): Elaborating entity "getcharindexS" for hierarchy "vga_render:va|getcharindexS:gciS" File: /home/re4/git/258/vga-c3/vga_render.v Line: 55
+Info (12128): Elaborating entity "getnextCharandRowL" for hierarchy "vga_render:va|getnextCharandRowL:nCaRL" File: /home/re4/git/258/vga-c3/vga_render.v Line: 56
+Info (12128): Elaborating entity "getnextCharandRowS" for hierarchy "vga_render:va|getnextCharandRowS:nCaRS" File: /home/re4/git/258/vga-c3/vga_render.v Line: 57
+Warning (10230): Verilog HDL assignment warning at vga_render.v(161): truncated value with size 32 to match size of target (6) File: /home/re4/git/258/vga-c3/vga_render.v Line: 161
+Warning (10230): Verilog HDL assignment warning at vga_render.v(164): truncated value with size 4 to match size of target (3) File: /home/re4/git/258/vga-c3/vga_render.v Line: 164
+Warning (10230): Verilog HDL assignment warning at vga_render.v(168): truncated value with size 32 to match size of target (6) File: /home/re4/git/258/vga-c3/vga_render.v Line: 168
+Warning (10230): Verilog HDL assignment warning at vga_render.v(175): truncated value with size 32 to match size of target (7) File: /home/re4/git/258/vga-c3/vga_render.v Line: 175
+Warning (10230): Verilog HDL assignment warning at vga_render.v(176): truncated value with size 32 to match size of target (6) File: /home/re4/git/258/vga-c3/vga_render.v Line: 176
+Info (12128): Elaborating entity "access8bit" for hierarchy "vga_render:va|access8bit:a8b" File: /home/re4/git/258/vga-c3/vga_render.v Line: 60
+Info (12128): Elaborating entity "access16bit" for hierarchy "vga_render:va|access16bit:a16b" File: /home/re4/git/258/vga-c3/vga_render.v Line: 61
+Info (12128): Elaborating entity "m96" for hierarchy "vga_render:va|m96:m96l" File: /home/re4/git/258/vga-c3/vga_render.v Line: 65
+Info (12128): Elaborating entity "mux6" for hierarchy "vga_render:va|m96:m96l|mux6:m0" File: /home/re4/git/258/vga-c3/vga_render.v Line: 262
+Info (12128): Elaborating entity "m48" for hierarchy "vga_render:va|m48:m48s" File: /home/re4/git/258/vga-c3/vga_render.v Line: 66
+Info (12128): Elaborating entity "char_rom" for hierarchy "vga_render:va|char_rom:cr" File: /home/re4/git/258/vga-c3/vga_render.v Line: 67
+Info (12128): Elaborating entity "altsyncram" for hierarchy "vga_render:va|char_rom:cr|altsyncram:CharInfoS" File: /home/re4/git/258/vga-c3/char_rom.v Line: 20
+Info (12130): Elaborated megafunction instantiation "vga_render:va|char_rom:cr|altsyncram:CharInfoS" File: /home/re4/git/258/vga-c3/char_rom.v Line: 20
+Info (12133): Instantiated megafunction "vga_render:va|char_rom:cr|altsyncram:CharInfoS" with the following parameter: File: /home/re4/git/258/vga-c3/char_rom.v Line: 20
     Info (12134): Parameter "WIDTH_A" = "64"
     Info (12134): Parameter "OPERATION_MODE" = "ROM"
     Info (12134): Parameter "WIDTHAD_A" = "7"
@@ -1439,11 +1417,11 @@ Info (12133): Instantiated megafunction "vga_render:va|char_rom:cr|altsyncram:Ch
     Info (12134): Parameter "POWER_UP_UNINITIALIZED" = "FALSE"
     Info (12134): Parameter "INIT_FILE" = "char_data_s.mif"
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_g731.tdf
-    Info (12023): Found entity 1: altsyncram_g731 File: /home/re4/git/csc258-final/db/altsyncram_g731.tdf Line: 27
+    Info (12023): Found entity 1: altsyncram_g731 File: /home/re4/git/258/vga-c3/db/altsyncram_g731.tdf Line: 27
 Info (12128): Elaborating entity "altsyncram_g731" for hierarchy "vga_render:va|char_rom:cr|altsyncram:CharInfoS|altsyncram_g731:auto_generated" File: /opt/altera/18.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 791
-Info (12128): Elaborating entity "altsyncram" for hierarchy "vga_render:va|char_rom:cr|altsyncram:CharInfoL" File: /home/re4/git/csc258-final/char_rom.v Line: 34
-Info (12130): Elaborated megafunction instantiation "vga_render:va|char_rom:cr|altsyncram:CharInfoL" File: /home/re4/git/csc258-final/char_rom.v Line: 34
-Info (12133): Instantiated megafunction "vga_render:va|char_rom:cr|altsyncram:CharInfoL" with the following parameter: File: /home/re4/git/csc258-final/char_rom.v Line: 34
+Info (12128): Elaborating entity "altsyncram" for hierarchy "vga_render:va|char_rom:cr|altsyncram:CharInfoL" File: /home/re4/git/258/vga-c3/char_rom.v Line: 34
+Info (12130): Elaborated megafunction instantiation "vga_render:va|char_rom:cr|altsyncram:CharInfoL" File: /home/re4/git/258/vga-c3/char_rom.v Line: 34
+Info (12133): Instantiated megafunction "vga_render:va|char_rom:cr|altsyncram:CharInfoL" with the following parameter: File: /home/re4/git/258/vga-c3/char_rom.v Line: 34
     Info (12134): Parameter "WIDTH_A" = "256"
     Info (12134): Parameter "OPERATION_MODE" = "ROM"
     Info (12134): Parameter "WIDTHAD_A" = "7"
@@ -1451,40 +1429,40 @@ Info (12133): Instantiated megafunction "vga_render:va|char_rom:cr|altsyncram:Ch
     Info (12134): Parameter "POWER_UP_UNINITIALIZED" = "FALSE"
     Info (12134): Parameter "INIT_FILE" = "char_data_l.mif"
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_s831.tdf
-    Info (12023): Found entity 1: altsyncram_s831 File: /home/re4/git/csc258-final/db/altsyncram_s831.tdf Line: 27
+    Info (12023): Found entity 1: altsyncram_s831 File: /home/re4/git/258/vga-c3/db/altsyncram_s831.tdf Line: 27
 Info (12128): Elaborating entity "altsyncram_s831" for hierarchy "vga_render:va|char_rom:cr|altsyncram:CharInfoL|altsyncram_s831:auto_generated" File: /opt/altera/18.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 791
-Info (12128): Elaborating entity "vga_controller" for hierarchy "vga_render:va|vga_controller:vcontrol" File: /home/re4/git/csc258-final/vga_render.v Line: 143
+Info (12128): Elaborating entity "vga_controller" for hierarchy "vga_render:va|vga_controller:vcontrol" File: /home/re4/git/258/vga-c3/vga_render.v Line: 126
 Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Warning (13039): The following bidirectional pins have no drivers
-    Warning (13040): bidirectional pin "PS2_CLK" has no driver File: /home/re4/git/csc258-final/main.v Line: 12
-    Warning (13040): bidirectional pin "PS2_DAT" has no driver File: /home/re4/git/csc258-final/main.v Line: 13
+    Warning (13040): bidirectional pin "PS2_CLK" has no driver File: /home/re4/git/258/vga-c3/main.v Line: 12
+    Warning (13040): bidirectional pin "PS2_DAT" has no driver File: /home/re4/git/258/vga-c3/main.v Line: 13
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "LEDR[6]" is stuck at GND File: /home/re4/git/csc258-final/main.v Line: 4
-    Warning (13410): Pin "HEX1[1]" is stuck at GND File: /home/re4/git/csc258-final/main.v Line: 6
-    Warning (13410): Pin "VGA_SYNC" is stuck at VCC File: /home/re4/git/csc258-final/main.v Line: 21
+    Warning (13410): Pin "LEDR[6]" is stuck at GND File: /home/re4/git/258/vga-c3/main.v Line: 4
+    Warning (13410): Pin "HEX1[1]" is stuck at GND File: /home/re4/git/258/vga-c3/main.v Line: 6
+    Warning (13410): Pin "VGA_SYNC" is stuck at VCC File: /home/re4/git/258/vga-c3/main.v Line: 21
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 9 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "KEY[1]" File: /home/re4/git/csc258-final/main.v Line: 2
-    Warning (15610): No output dependent on input pin "KEY[2]" File: /home/re4/git/csc258-final/main.v Line: 2
-    Warning (15610): No output dependent on input pin "SW[1]" File: /home/re4/git/csc258-final/main.v Line: 3
-    Warning (15610): No output dependent on input pin "SW[2]" File: /home/re4/git/csc258-final/main.v Line: 3
-    Warning (15610): No output dependent on input pin "SW[3]" File: /home/re4/git/csc258-final/main.v Line: 3
-    Warning (15610): No output dependent on input pin "SW[4]" File: /home/re4/git/csc258-final/main.v Line: 3
-    Warning (15610): No output dependent on input pin "SW[5]" File: /home/re4/git/csc258-final/main.v Line: 3
-    Warning (15610): No output dependent on input pin "SW[6]" File: /home/re4/git/csc258-final/main.v Line: 3
-    Warning (15610): No output dependent on input pin "SW[7]" File: /home/re4/git/csc258-final/main.v Line: 3
-Info (21057): Implemented 1033 device resources after synthesis - the final resource count might be different
+    Warning (15610): No output dependent on input pin "KEY[1]" File: /home/re4/git/258/vga-c3/main.v Line: 2
+    Warning (15610): No output dependent on input pin "KEY[2]" File: /home/re4/git/258/vga-c3/main.v Line: 2
+    Warning (15610): No output dependent on input pin "SW[1]" File: /home/re4/git/258/vga-c3/main.v Line: 3
+    Warning (15610): No output dependent on input pin "SW[2]" File: /home/re4/git/258/vga-c3/main.v Line: 3
+    Warning (15610): No output dependent on input pin "SW[3]" File: /home/re4/git/258/vga-c3/main.v Line: 3
+    Warning (15610): No output dependent on input pin "SW[4]" File: /home/re4/git/258/vga-c3/main.v Line: 3
+    Warning (15610): No output dependent on input pin "SW[5]" File: /home/re4/git/258/vga-c3/main.v Line: 3
+    Warning (15610): No output dependent on input pin "SW[6]" File: /home/re4/git/258/vga-c3/main.v Line: 3
+    Warning (15610): No output dependent on input pin "SW[7]" File: /home/re4/git/258/vga-c3/main.v Line: 3
+Info (21057): Implemented 1018 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 12 input pins
     Info (21059): Implemented 84 output pins
     Info (21060): Implemented 2 bidirectional pins
-    Info (21061): Implemented 587 logic cells
+    Info (21061): Implemented 572 logic cells
     Info (21064): Implemented 348 RAM segments
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 27 warnings
-    Info: Peak virtual memory: 1044 megabytes
-    Info: Processing ended: Sun Jul 28 17:25:17 2019
-    Info: Elapsed time: 00:00:23
-    Info: Total CPU time (on all processors): 00:00:46
+    Info: Peak virtual memory: 1054 megabytes
+    Info: Processing ended: Sun Jul 28 17:11:40 2019
+    Info: Elapsed time: 00:00:20
+    Info: Total CPU time (on all processors): 00:00:43
 
 

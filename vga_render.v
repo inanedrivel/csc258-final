@@ -37,16 +37,10 @@ reg [47:0] linecols;
 reg [95:0] linecoll;
 wire [47:0] cds;
 wire [95:0] cdl;
-
-// you will see why this monstrousity is needed in a bit
-reg [5:0] lastpixs, lastpixl, slastpixs, slastpixl;
-wire [5:0] lastpxst, lastpxlt,slastpxst, slastpxlt;
+reg [5:0] lastpixs, lastpixl;
+wire [5:0] lastpxst, lastpxlt;
 access6bitf48 a6b48l(linecols, 3'b111, lastpxst);
 access6bitf96 a6b96l(linecoll, 4'b1111, lastpxlt);
-access6bitf48 a6b48sl(linecols, 3'b110, slastpxst);
-access6bitf96 a6b96sl(linecoll, 4'b1110, slastpxlt);
-
-
 reg [5:0] outcol;
 wire [9:0] x;
 wire [8:0] y;
@@ -87,21 +81,14 @@ always @(posedge clk)
 begin
 	/* read from buffer */
 	if (sL) begin
-		// OK, so we basically do not trust the
-		// RAM to get the data we need in 2 clock cycles,
-		// so we have 2 pixels preloaded while fetching our
-		// next set of pixels.
+		/* OK, here's the hacky part to load the next pixel data */
 		if(x[3:0] == 4'b1111) begin
 			outcol <= lastpixl;
-		end
-		else if (x[3:0] == 4'b1110) begin
-			outcol <= slastpixl;
-			lastpixl <= lastpxlt;
 			linecoll <= cdl;
 		end
-		else if (x[3:0] == 4'b1101) begin
+		else if (x[3:0] == 4'b1110) begin
 			outcol <= lincol;
-			slastpixl <= slastpxlt;
+			lastpixl <= lastpxlt;
 		end
 		else begin
 			outcol <= lincol;
@@ -111,15 +98,11 @@ begin
 	begin
 		if(x[2:0] == 3'b111) begin
 			outcol <= lastpixs;
-		end
-		else if (x[2:0] == 3'b110) begin
-			outcol <= slastpixs;
-			lastpixs <= lastpxst;
 			linecols <= cds;
 		end
-		else if (x[2:0] == 3'b101) begin
-			slastpixs <= slastpxst;
+		else if (x[2:0] == 3'b110) begin
 			outcol <= sincol;
+			lastpixs <= lastpxst;
 		end
 		else begin
 			outcol <= sincol;
@@ -328,19 +311,20 @@ endmodule
 
 module access6bitf48(input [47:0] data, input [2:0] inputin, output reg [5:0] target);
 	always @(*)
-	begin
+	begin		/* reversed due to font, for proper font rendering start from 0 */ 
 		case (inputin)
-			3'd0: target = data[5:0];
-			3'd1: target = data[11:5];
-			3'd2: target = data[17:12];
-			3'd3: target = data[23:18];
-			3'd4: target = data[29:24];
-			3'd5: target = data[35:30];
-			3'd6: target = data[41:36];			
-			3'd7: target = data[47:42];
+			3'd7: target = data[5:0];
+			3'd6: target = data[11:5];
+			3'd5: target = data[17:12];
+			3'd4: target = data[23:18];
+			3'd3: target = data[29:24];
+			3'd2: target = data[35:30];
+			3'd1: target = data[41:36];			
+			3'd0: target = data[47:42];
 		endcase
 	end
 endmodule
+
 module access6bitf96(input [95:0] data, input [3:0] inputin, output reg [5:0] target);
 	always @(*)
 	begin
@@ -361,7 +345,7 @@ module access6bitf96(input [95:0] data, input [3:0] inputin, output reg [5:0] ta
 			4'hd: target = data[83:78];
 			4'he: target = data[89:84];			
 			4'hf: target = data[95:90];
-		endcase
+		endcase 
 	end
 endmodule
 

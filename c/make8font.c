@@ -154,7 +154,7 @@ int main() {
 	for(int i = 0; i < 128; i++) {
 		f = 0x0LL;
 		for (int j = 0; j < 8; j++) {
-			f += BitReverseTable256[font8x8_basic[i][j]] << 8*j;
+			f += font8x8_basic[i][j] << 8*j;
 		}
 	printf("\t %d : \t %" PRIu64 ";\n", i,f);
 	}

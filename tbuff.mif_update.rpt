@@ -1,5 +1,5 @@
 MIF/HEX Update report for tbuff
-Sun Jul 28 17:57:34 2019
+Sun Jul 28 17:02:35 2019
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -35,7 +35,7 @@ refer to the applicable agreement for further details.
 +---------------------------------------------------------------+
 ; MIF/HEX Update Summary                                        ;
 +-----------------------+---------------------------------------+
-; MIF/HEX Update Status ; Successful - Sun Jul 28 17:57:34 2019 ;
+; MIF/HEX Update Status ; Successful - Sun Jul 28 17:02:35 2019 ;
 ; Revision Name         ; tbuff                                 ;
 ; Top-level Entity Name ; main                                  ;
 ; Family                ; Cyclone V                             ;
@@ -43,17 +43,17 @@ refer to the applicable agreement for further details.
 +-----------------------+---------------------------------------+
 
 
-+----------------------------------------------------+
-; MIF/HEX Update Processed Files                     ;
-+----------------------------------------------------+
-; File Name                                          ;
-+----------------------------------------------------+
-; /home/re4/git/csc258-final/char_data_l.mif         ;
-; /home/re4/git/csc258-final/char_data_s.mif         ;
-; /home/re4/git/csc258-final/s_initial_colour.mif    ;
-; /home/re4/git/csc258-final/s_initial_highlight.mif ;
-; /home/re4/git/csc258-final/s_initial_text.mif      ;
-+----------------------------------------------------+
++--------------------------------------------------+
+; MIF/HEX Update Processed Files                   ;
++--------------------------------------------------+
+; File Name                                        ;
++--------------------------------------------------+
+; /home/re4/git/258/vga-c3/char_data_l.mif         ;
+; /home/re4/git/258/vga-c3/char_data_s.mif         ;
+; /home/re4/git/258/vga-c3/s_initial_colour.mif    ;
+; /home/re4/git/258/vga-c3/s_initial_highlight.mif ;
+; /home/re4/git/258/vga-c3/s_initial_text.mif      ;
++--------------------------------------------------+
 
 
 +-------------------------+
@@ -62,20 +62,22 @@ refer to the applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime MIF/HEX Update
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Sun Jul 28 17:57:30 2019
+    Info: Processing started: Sun Jul 28 17:02:30 2019
 Info: Command: quartus_cdb tbuff -c tbuff --update_mif
 Warning (39023): Can't find Memory Initialization File l_initial_text.mif -- skipped updates for this file
 Warning (39023): Can't find Memory Initialization File l_initial_colour.mif -- skipped updates for this file
 Warning (39023): Can't find Memory Initialization File l_initial_highlight.mif -- skipped updates for this file
+Warning (113028): 10 out of 128 addresses are uninitialized. The Quartus Prime software will initialize them to "0". There are 1 warnings found, and 1 warnings are reported. File: /home/re4/git/258/vga-c3/char_data_s.mif Line: 1
+    Warning (113027): Addresses ranging from 118 to 127 are not initialized File: /home/re4/git/258/vga-c3/char_data_s.mif Line: 1
 Info (39024): Processed the following Memory Initialization File(s)
-    Info (39025): Processed Memory Initialization File /home/re4/git/csc258-final/char_data_l.mif File: /home/re4/git/csc258-final/char_data_l.mif Line: 0
-    Info (39025): Processed Memory Initialization File /home/re4/git/csc258-final/char_data_s.mif File: /home/re4/git/csc258-final/char_data_s.mif Line: 0
-    Info (39025): Processed Memory Initialization File /home/re4/git/csc258-final/s_initial_colour.mif File: /home/re4/git/csc258-final/s_initial_colour.mif Line: 0
-    Info (39025): Processed Memory Initialization File /home/re4/git/csc258-final/s_initial_highlight.mif File: /home/re4/git/csc258-final/s_initial_highlight.mif Line: 0
-    Info (39025): Processed Memory Initialization File /home/re4/git/csc258-final/s_initial_text.mif File: /home/re4/git/csc258-final/s_initial_text.mif Line: 0
-Info: Quartus Prime MIF/HEX Update was successful. 0 errors, 3 warnings
-    Info: Peak virtual memory: 1310 megabytes
-    Info: Processing ended: Sun Jul 28 17:57:35 2019
+    Info (39025): Processed Memory Initialization File /home/re4/git/258/vga-c3/char_data_l.mif File: /home/re4/git/258/vga-c3/char_data_l.mif Line: 0
+    Info (39025): Processed Memory Initialization File /home/re4/git/258/vga-c3/char_data_s.mif File: /home/re4/git/258/vga-c3/char_data_s.mif Line: 0
+    Info (39025): Processed Memory Initialization File /home/re4/git/258/vga-c3/s_initial_colour.mif File: /home/re4/git/258/vga-c3/s_initial_colour.mif Line: 0
+    Info (39025): Processed Memory Initialization File /home/re4/git/258/vga-c3/s_initial_highlight.mif File: /home/re4/git/258/vga-c3/s_initial_highlight.mif Line: 0
+    Info (39025): Processed Memory Initialization File /home/re4/git/258/vga-c3/s_initial_text.mif File: /home/re4/git/258/vga-c3/s_initial_text.mif Line: 0
+Info: Quartus Prime MIF/HEX Update was successful. 0 errors, 5 warnings
+    Info: Peak virtual memory: 1312 megabytes
+    Info: Processing ended: Sun Jul 28 17:02:35 2019
     Info: Elapsed time: 00:00:05
     Info: Total CPU time (on all processors): 00:00:05
 

@@ -26,22 +26,43 @@ module main(input CLOCK_50,
 	wire searchMode;
 	wire largeMode;
 	wire resetn;
+
+	reg [6:0] editasciiin, searchasciiin;
+	wire [6:0] editasciio, searchasciio;
+	wire [5:0] editcolouro, searchcolouro;
+	wire edithlo, searchhlo;
+	wire edwrdy, edhrdy, sewrdy, sehrdy;
+	wire [7:0] editxo, searchxo, edithxo, searchhxo;
+	wire [6:0] edityo, searchyo, edithyo, searchhyo;
+	reg [6:0] ui_asciiin;
+	reg [5:0] ui_clrin;
+	reg ui_hlin;
+	reg [6:0] ui_xin;
+	reg [5:0] ui_yin;
+	reg ui_wready;
+	reg ui_hready;
 	
 	assign searchMode = SW[1];
 	assign largeMode = SW[0];
 	assign resetn = KEY[0];
-	
+	reg [6:0] ui_asciiin;
+	reg [5:0] ui_clrin;
+	reg ui_hlin;
+	reg [6:0] ui_xin, uih_xin;
+	reg [5:0] ui_yin, uih_yin;
+	reg ui_wready;
+	reg ui_hready;	
 	memory_controller memctrl(.sL(largeMode),
-								     .wrx(7'b0),
-			      				  .wry(6'b0),
-								     .wren(1'b0),
-								     .wascii(1'b0),
-								     .wcolour(6'b0),
+								     .wrx(ui_xin),
+			      				  .wry(ui_yin),
+								     .wren(ui_wready),
+								     .wascii(ui_asciiin),
+								     .wcolour(ui_clrin),
 								     .wclock(CLOCK_50),
-								     .hix(7'b0),
-								     .hiy(6'b0),
-								     .hien(1'b0),
-								     .highlight(1'b0),
+								     .hix(uih_xin),
+								     .hiy(uih_yin),
+								     .hien(ui_hready),
+								     .highlight(ui_hlin),
 								     .hclock(CLOCK_50),
 								     .rex(vgx),
 								     .rey(vgy),
@@ -83,12 +104,73 @@ module main(input CLOCK_50,
 				     .VGA_SYNC(VGA_SYNC),
 					  .DEBUG(VDBG),
 				     .VGA_CLK(VGA_CLK));
-	/*
-	keyboard_in kbin(.PS2_CLK(),
-						  .PS2_DAT()
-						  .asciiin());
-				 
 	
+	wire scanread;
+	wire [7:0] scancode;
+	
+	ps2_controller ps3(
+    .reset(resetn),
+    .clk(CLOCK_50),
+    .ps2_clock(PS2_CLK),
+    .ps2_data(PS2_DAT),
+    .scan_ready(scanread),
+    .scan_code(scancode)
+	);
+	
+	wire [6:0] asciiready;
+	wire [7:0] asciiout;
+	wire asciigo;
+	
+
+	
+	module ascii (.clk(PS2_CLK),
+					  .scan_ready(scanread),
+                 .scan_code(scancode),
+					  .ascii(asciiout));
+	);
+	
+	asciidelay adaaaaaaaa(.clk(CLOCK_50), 
+				  .resetn(resetn), 
+				  .asciii(asciiout[6:0]), 
+				  .asciio(asciiready), 
+				  .ready(asciigo));
+				  
+
+
+	always @(*)
+	begin
+		if (searchMode) begin
+				// make the IM go through search mode
+				editasciiin <= 7'b0;
+				searchasciiin <= asciiready;
+				ui_asciiin <= searchasciio;
+				ui_clrin <= searchcolouro;
+				ui_hlin <= searchhlo;
+				ui_xin <= searchxo;
+				ui_yin <= searchyo;
+				uih_xin <= searchhxo;
+				uih_yin <= searchhyo;
+				ui_wready <= sewrdy;
+				ui_hready <= sehrdy;
+		end
+		else
+		begin
+			// make the IM go through edut mode 
+				editasciiin <= 7'b0;
+				searchasciiin <= asciiready;
+				ui_asciiin <= editasciio;
+				ui_clrin <= editcolouro;
+				ui_hlin <= edithlo;
+				ui_xin <= editxo;
+				ui_yin <= edityo;
+				uih_xin <= edithxo;
+				uih_yin <= edithyo;
+				ui_wready <= edwrdy;
+				ui_hready <= edhrdy;
+		end
+	end
+	
+	/*
 	edit_mode em(.sL(largeMode),
 					 .clk(),
 					 .asciiin(),
@@ -155,4 +237,39 @@ module hex_decoder(hex_digit, segments);
             4'hF: segments = 7'b000_1110;   
             default: segments = 7'h7f;
         endcase
+endmodule
+
+module asciidelay(input clk, 
+						input resetn, 
+						input [6:0] asciii, 
+						output reg [6:0] asciio, 
+						output reg ready);
+reg [15:0] cntr;
+always @(posedge clk or negedge resetn)
+begin
+	if(~resetn) begin
+		cntr <= 16b1111000011110000;
+		ready <= 1'b0;
+		asciio <= 7'b0; /* NUL */
+	end
+	else if (cntr != 16'b0) begin
+		cntr <= cntr - 1'b1;
+		ready <= 1'b0;
+		asciio <= 7'b0; /* NUL */
+	end
+	else
+	begin
+		if (asciii != 7'b0) begin
+			asciio <= asciii;
+			cntr <= 16b1111000011110000;
+			ready <= 1'b1;
+		end
+		else begin
+			asciio <= 7'b0;
+			ready <= 1'b0;
+			cntr <= 16'b0;
+		end
+	end
+end
+
 endmodule
