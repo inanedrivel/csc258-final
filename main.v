@@ -1,7 +1,7 @@
 module main(input CLOCK_50,
 				input [2:0] KEY,
 				input [7:0] SW,
-				output [6:0] LEDR,
+				output [7:0] LEDR,
 				output [6:0] HEX0, 
 				output [6:0] HEX1, 
 				output [6:0] HEX2, 
@@ -39,19 +39,14 @@ module main(input CLOCK_50,
 	reg ui_hlin;
 	reg [6:0] ui_xin;
 	reg [5:0] ui_yin;
+	reg [6:0] uih_xin;
+	reg [5:0] uih_yin;
 	reg ui_wready;
 	reg ui_hready;
 	
 	assign searchMode = SW[1];
 	assign largeMode = SW[0];
 	assign resetn = KEY[0];
-	reg [6:0] ui_asciiin;
-	reg [5:0] ui_clrin;
-	reg ui_hlin;
-	reg [6:0] ui_xin, uih_xin;
-	reg [5:0] ui_yin, uih_yin;
-	reg ui_wready;
-	reg ui_hready;	
 	memory_controller memctrl(.sL(largeMode),
 								     .wrx(ui_xin),
 			      				  .wry(ui_yin),
@@ -69,14 +64,13 @@ module main(input CLOCK_50,
 								     .rascii(vgascii),
 								     .rcolour(vgclr),
 								     .rhighlight(vghl),
-									  .DEBUG(LEDR[6]),
 								     .rclock(CLOCK_50));
 	wire [6:0] vgascii;
 	wire [6:0] vgx;
 	wire [5:0] vgy;
 	wire [5:0] vgclr;
 	wire vghl;
-	assign LEDR[5:0] = vgclr;
+
 	
 	wire [15:0] VDBG;
 	hex_decoder h5(VDBG[15:12], HEX5);
@@ -104,36 +98,18 @@ module main(input CLOCK_50,
 				     .VGA_SYNC(VGA_SYNC),
 					  .DEBUG(VDBG),
 				     .VGA_CLK(VGA_CLK));
-	
-	wire scanread;
-	wire [7:0] scancode;
-	
-	ps2_controller ps3(
-    .reset(resetn),
-    .clk(CLOCK_50),
-    .ps2_clock(PS2_CLK),
-    .ps2_data(PS2_DAT),
-    .scan_ready(scanread),
-    .scan_code(scancode)
-	);
-	
-	wire [6:0] asciiready;
-	wire [7:0] asciiout;
+
+	wire [6:0] asciiready;	
 	wire asciigo;
 	
-
+	ps2_keyboard_to_ascii vdhl_kb(.clk(CLOCK_50),
+											.ps2_clk(PS2_CLK),
+											.ps2_data(PS2_DAT),
+											.ascii_new(asciigo),
+											.ascii_code(asciiready));
 	
-	module ascii (.clk(PS2_CLK),
-					  .scan_ready(scanread),
-                 .scan_code(scancode),
-					  .ascii(asciiout));
-	);
-	
-	asciidelay adaaaaaaaa(.clk(CLOCK_50), 
-				  .resetn(resetn), 
-				  .asciii(asciiout[6:0]), 
-				  .asciio(asciiready), 
-				  .ready(asciigo));
+	assign LEDR[6:0] = asciiready;
+	assign LEDR[7] = asciigo;
 				  
 
 
@@ -141,35 +117,51 @@ module main(input CLOCK_50,
 	begin
 		if (searchMode) begin
 				// make the IM go through search mode
-				editasciiin <= 7'b0;
-				searchasciiin <= asciiready;
-				ui_asciiin <= searchasciio;
-				ui_clrin <= searchcolouro;
-				ui_hlin <= searchhlo;
-				ui_xin <= searchxo;
-				ui_yin <= searchyo;
-				uih_xin <= searchhxo;
-				uih_yin <= searchhyo;
-				ui_wready <= sewrdy;
-				ui_hready <= sehrdy;
+				editasciiin = 7'b0;
+				searchasciiin = asciiready;
+				ui_asciiin = searchasciio;
+				ui_clrin = searchcolouro;
+				ui_hlin = searchhlo;
+				ui_xin = searchxo;
+				ui_yin = searchyo;
+				uih_xin = searchhxo;
+				uih_yin = searchhyo;
+				ui_wready = sewrdy;
+				ui_hready = sehrdy;
 		end
 		else
 		begin
 			// make the IM go through edut mode 
-				editasciiin <= 7'b0;
-				searchasciiin <= asciiready;
-				ui_asciiin <= editasciio;
-				ui_clrin <= editcolouro;
-				ui_hlin <= edithlo;
-				ui_xin <= editxo;
-				ui_yin <= edityo;
-				uih_xin <= edithxo;
-				uih_yin <= edithyo;
-				ui_wready <= edwrdy;
-				ui_hready <= edhrdy;
+				editasciiin = asciiready;
+				searchasciiin = 7'b0;
+				ui_asciiin = editasciio;
+				ui_clrin = editcolouro;
+				ui_hlin = edithlo;
+				ui_xin = editxo;
+				ui_yin = edityo;
+				uih_xin = edithxo;
+				uih_yin = edithyo;
+				ui_wready = edwrdy;
+				ui_hready = edhrdy;
 		end
 	end
 	
+	edit_mode em(.sL(largeMode),
+					 .resetn(resetn),
+					 .clk(CLOCK_50),
+					 .asciiin(editasciiin),
+					 .clrin(SW[7:2]),
+					 .asciiready(asciigo & ~searchMode),
+					 .cx(editxo),
+					 .cy(edityo),
+					 .ccol(editcolouro),
+					 .asciiout(editasciio),
+					 .cwren(edwrdy),
+					 .hx(edithxo),
+					 .hy(edithyo),
+					 .ho(edithlo),
+					 .hen(edhrdy));
+					  
 	/*
 	edit_mode em(.sL(largeMode),
 					 .clk(),
@@ -237,39 +229,4 @@ module hex_decoder(hex_digit, segments);
             4'hF: segments = 7'b000_1110;   
             default: segments = 7'h7f;
         endcase
-endmodule
-
-module asciidelay(input clk, 
-						input resetn, 
-						input [6:0] asciii, 
-						output reg [6:0] asciio, 
-						output reg ready);
-reg [15:0] cntr;
-always @(posedge clk or negedge resetn)
-begin
-	if(~resetn) begin
-		cntr <= 16b1111000011110000;
-		ready <= 1'b0;
-		asciio <= 7'b0; /* NUL */
-	end
-	else if (cntr != 16'b0) begin
-		cntr <= cntr - 1'b1;
-		ready <= 1'b0;
-		asciio <= 7'b0; /* NUL */
-	end
-	else
-	begin
-		if (asciii != 7'b0) begin
-			asciio <= asciii;
-			cntr <= 16b1111000011110000;
-			ready <= 1'b1;
-		end
-		else begin
-			asciio <= 7'b0;
-			ready <= 1'b0;
-			cntr <= 16'b0;
-		end
-	end
-end
-
 endmodule

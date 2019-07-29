@@ -132,7 +132,7 @@ module getcharindexS(input [9:0] px,
 						   output [6:0] cx,
 							output [5:0] cy);
 	assign cx = px[9:3];
-	assign cy = 6'd59 - py[8:3];
+	assign cy = py[8:3];
 endmodule 
 
 module getcharindexL(input [9:0] px,
@@ -140,7 +140,7 @@ module getcharindexL(input [9:0] px,
 						   output [6:0] cx,
 							output [5:0] cy);
 	assign cx = px[9:4];
-	assign cy = 6'd29 - py[8:4];
+	assign cy = py[8:4];
 endmodule 
 
 module getnextCharandRowS(input [9:0] px,
