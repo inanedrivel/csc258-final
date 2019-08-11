@@ -309,8 +309,8 @@ always @(*)
 begin 
 	if (((y >= 60) | (x >= 80)) == 1'b1) addr <= 13'b1111111111111;
 	else begin
-		/* 60y + x = 64y - 4y + x = 2**6 y - 2 ** 2 y + x*/
-		addr <= (y << 6) + x - (y << 2);
+		/* 80y + x = 64y + 16y + x = 2**6 y + 2 ** 4 y + x*/
+		addr <= (y << 6) + (y << 4) + x;
 	end
 end
 
@@ -325,8 +325,8 @@ always @(*)
 begin 
 	if (((y >= 30) | (x >= 40)) == 1'b1) addr <= 11'b11111111111;
 	else begin
-		/* 30y + x = 32y - 2y + x = 2**5 y - 2 y + x*/
-		addr <= (y << 5) + x - (y << 1);
+		/* 40y + x = 32y + 8y + x = 2**5 y + 2 ** 3 y + x*/
+		addr <= (y << 5) + x + (y << 3);
 	end
 end								 
 

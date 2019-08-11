@@ -31,6 +31,7 @@ module vga_render(input sL,
 				      output VGA_CLK,
 						output [15:0] DEBUG);
 parameter black = 6'b000000;
+parameter BORDER = 6'b101111;
 /* 8 x 6 bit colour */				
 reg [47:0] linecols;
 /* 16 x 6 bit colour */
@@ -41,7 +42,7 @@ reg [5:0] lastpixs, lastpixl;
 wire [5:0] lastpxst, lastpxlt;
 access6bitf48 a6b48l(linecols, 3'b111, lastpxst);
 access6bitf96 a6b96l(linecoll, 4'b1111, lastpxlt);
-reg [5:0] outcol;
+reg [5:0] toutcol, outcol;
 wire [9:0] x;
 wire [8:0] y;
 wire [6:0] cxs, cxl, nxs, nxl;
@@ -76,7 +77,12 @@ begin
 		cx <= nxs;
 		cy <= nys;
 	end
+	
+	if ((x == 0) | (x == 639) | (y == 0) | (y == 479)) toutcol = BORDER;
+	else toutcol = outcol;
+	
 end
+
 always @(posedge clk)
 begin
 	/* read from buffer */
@@ -109,7 +115,7 @@ begin
 		end
 	end
 end
-assign DEBUG = datas[15:0];
+assign DEBUG = {10'b0, lincol};
 vga_controller vcontrol(
 					.vga_clock(vclk), 
 					.resetn(resetn), 
@@ -150,22 +156,22 @@ module getnextCharandRowS(input [9:0] px,
 								  output reg [2:0] row);
 	always @(*)
 	begin
-			if (px[9:3] == 7'd79) begin
+			if (px[9:3] >= 7'd79) begin
 				/* end of row */
 				if (py[2:0] == 3'b111) begin
-					if (py[8:3] == 6'd59) begin
+					if (py[8:3] >= 6'd59) begin
 						/* last row */
-						cy <= 6'd59;
+						cy <= 6'd0;
 					end
 					else begin
-						cy <= 58 - py[8:3];
+						cy <= py[8:3] + 1;
 					end
 					cx <= 7'd0;
-					row <= 4'b0;
+					row <= 3'b0;
 				end
 				else
 				begin
-					cy <= 59 - py[8:3];
+					cy <= py[8:3];
 					cx <= 7'd0;
 					row <= 3'b110 - py[2:0];
 				end
@@ -173,7 +179,7 @@ module getnextCharandRowS(input [9:0] px,
 			else
 			begin 
 				cx <= px[9:3] + 1;
-				cy <= 59 - py[8:3];
+				cy <= py[8:3];
 				row <= 3'b111 - py[2:0];
 			end
 		end
@@ -187,31 +193,31 @@ module getnextCharandRowL(input [9:0] px,
 								  output reg [3:0] row);
 	always @(*)
 	begin
-			if (px[9:4] == 6'd39) begin
+			if (px[9:4] >= 6'd39) begin
 				/* end of row */
 				if (py[3:0] == 4'b1111) begin
-					if (py[8:4] == 5'd29) begin
+					if (py[8:4] >= 5'd29) begin
 						/* last row */
-						cy <= 6'd29;
+						cy <= 6'd0;
 					end
 					else begin
-						cy <= 6'd28 - py[8:4];
+						cy <= py[8:4];
 					end
 					cx <= 7'd0;
 					row <= 3'b0;
 				end
 				else
 				begin
-					cy <= 6'd29 - py[8:4];
+					cy <= py[8:4];
 					cx <= 7'd0;
-					row <= 4'b1110 - py[3:0];
+					row <= py[3:0] + 1'b1;
 				end
 			end
 			else
 			begin 
 				cx <= px[9:4] + 1'b1;
-				cy <= 6'd29 - py[8:4];
-				row <= 4'b1111 - py[3:0];
+				cy <= py[8:4];
+				row <= 4'b1111;
 			end
 	end
 endmodule
@@ -314,7 +320,7 @@ module access6bitf48(input [47:0] data, input [2:0] inputin, output reg [5:0] ta
 	begin		/* reversed due to font, for proper font rendering start from 0 */ 
 		case (inputin)
 			3'd7: target = data[5:0];
-			3'd6: target = data[11:5];
+			3'd6: target = data[11:6];
 			3'd5: target = data[17:12];
 			3'd4: target = data[23:18];
 			3'd3: target = data[29:24];
@@ -330,7 +336,7 @@ module access6bitf96(input [95:0] data, input [3:0] inputin, output reg [5:0] ta
 	begin
 		case (inputin)
 			4'h0: target = data[5:0];
-			4'h1: target = data[11:5];
+			4'h1: target = data[11:6];
 			4'h2: target = data[17:12];
 			4'h3: target = data[23:18];
 			4'h4: target = data[29:24];

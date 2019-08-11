@@ -1,7 +1,7 @@
 module main(input CLOCK_50,
 				input [2:0] KEY,
 				input [7:0] SW,
-				output [7:0] LEDR,
+				output [9:0] LEDR,
 				output [6:0] HEX0, 
 				output [6:0] HEX1, 
 				output [6:0] HEX2, 
@@ -9,8 +9,8 @@ module main(input CLOCK_50,
 				output [6:0] HEX4,
 				output [6:0] HEX5,
 				/* KB IN */
-				inout PS2_CLK,
-				inout PS2_DAT,
+				input PS2_CLK,
+				input PS2_DAT,
 				/* FUCK VGA */
 				output [9:0] VGA_R,
 				output [9:0] VGA_G,
@@ -32,8 +32,8 @@ module main(input CLOCK_50,
 	wire [5:0] editcolouro, searchcolouro;
 	wire edithlo, searchhlo;
 	wire edwrdy, edhrdy, sewrdy, sehrdy;
-	wire [7:0] editxo, searchxo, edithxo, searchhxo;
-	wire [6:0] edityo, searchyo, edithyo, searchhyo;
+	wire [6:0] editxo, searchxo, edithxo, searchhxo;
+	wire [5:0] edityo, searchyo, edithyo, searchhyo;
 	reg [6:0] ui_asciiin;
 	reg [5:0] ui_clrin;
 	reg ui_hlin;
@@ -43,6 +43,8 @@ module main(input CLOCK_50,
 	reg [5:0] uih_yin;
 	reg ui_wready;
 	reg ui_hready;
+	
+	wire [7:0] SIZEDBG;
 	
 	assign searchMode = SW[1];
 	assign largeMode = SW[0];
@@ -73,8 +75,8 @@ module main(input CLOCK_50,
 
 	
 	wire [15:0] VDBG;
-	hex_decoder h5(VDBG[15:12], HEX5);
-	hex_decoder h4(VDBG[11:8], HEX4);
+	hex_decoder h5(SIZEDBG[7:4], HEX5);
+	hex_decoder h4(SIZEDBG[3:0], HEX4);
 	hex_decoder h3(VDBG[7:4], HEX3);
 	hex_decoder h2(VDBG[3:0], HEX2);
 	hex_decoder h1({2'b0, vgclr[5:4]}, HEX1);
@@ -108,11 +110,21 @@ module main(input CLOCK_50,
 											.ascii_new(asciigo),
 											.ascii_code(asciiready));
 	
-	assign LEDR[6:0] = asciiready;
+	assign LEDR[5:0] = vgclr;
 	assign LEDR[7] = asciigo;
-				  
-
-
+	assign LEDR[9:8] = {ps2datyes, ps2clkyes};
+	
+	reg ps2clkyes,ps2datyes;
+	always @(negedge resetn or posedge CLOCK_50) begin
+		if(~resetn) begin
+			ps2datyes<= 1'b0;
+			ps2clkyes <= 1'b0;
+		end else begin 
+			if((PS2_CLK == 1'b1) & ~(^PS2_CLK === 1'bx)) ps2clkyes <= 1'b1;
+			if((PS2_DAT == 1'b1) & ~(^PS2_DAT === 1'bx)) ps2datyes <= 1'b1;
+		end
+	end
+	
 	always @(*)
 	begin
 		if (searchMode) begin
@@ -161,7 +173,27 @@ module main(input CLOCK_50,
 					 .hy(edithyo),
 					 .ho(edithlo),
 					 .hen(edhrdy));
-					  
+					 
+	 search_mode sm(.sL(largeMode),
+						 .resetn(resetn),
+						 .clk(CLOCK_50),
+						 .editen(~searchMode),
+						 .editxin(editxo),
+						 .edityin(edityo),
+						 .editasciiin(editasciio),
+						 .asciiin(searchasciiin),
+						 .clrin(SW[7:2]),
+						 .asciiready(asciigo & searchMode),
+						 .cx(searchxo),
+						 .cy(searchyo),
+						 .ccol(searchcolouro),
+						 .asciiout(searchasciio),
+						 .cwren(sewrdy),
+						 .hx(searchhxo),
+						 .hy(searchhyo),
+						 .ho(searchhlo),
+						 .hen(sehrdy),
+						 .DEBUG(SIZEDBG));
 	/*
 	edit_mode em(.sL(largeMode),
 					 .clk(),

@@ -142,6 +142,9 @@ BEGIN
                 WHEN x"31" => ascii <= x"0E"; --^N  SO
                 WHEN x"44" => ascii <= x"0F"; --^O  SI
                 WHEN x"4D" => ascii <= x"10"; --^P  DLE
+					 -- DOWN, LEFT, UP, RIGHT don't have actual ascii codes
+					 -- give them DC1, DC2, DC3, DC4 respectively.
+					 when x"50" => ascii <= x"11"; --DOWN
                 WHEN x"15" => ascii <= x"11"; --^Q  DC1
                 WHEN x"2D" => ascii <= x"12"; --^R  DC2
                 WHEN x"1B" => ascii <= x"13"; --^S  DC3

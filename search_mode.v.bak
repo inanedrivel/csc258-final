@@ -1,0 +1,22 @@
+ Possibly the most annoying component of this project: searching.
+ This is a heavily brute force approach which is certainly not
+ register efficient.
+ 
+ module search_mode(	input sL,
+							input resetn,
+							input clk,
+							input [6:0] editxin,
+							input [5:0] edityin,
+							input [6:0] editasciiin,
+							input [6:0] asciiin,
+							input [5:0] clrin,
+							input asciiready,
+							output reg [6:0] cx,
+							output reg [5:0] cy,
+							output [5:0] ccol,
+							output reg [6:0] asciiout,
+							output reg cwren,
+							output reg [6:0] hx,
+							output reg [5:0] hy,
+							output ho,
+							output hen);)

@@ -42,17 +42,21 @@ end
 
 reg counter;
 reg accept;
+reg [22:0] acceptdelay;
 always @(negedge resetn or 
 			posedge clk)
 begin
 if (~resetn) begin
 	counter <= 1'b0;
 	accept <= 1'b1;
-end else if (asciiready) begin
+	acceptdelay <= 23'b0;
+end else if (asciiready && (acceptdelay == 23'b0)) begin
 	accept <= 1'b1;
+	acceptdelay <= 23'b11111111111111111111111;
 	counter <= 1'b1;
-end else if (counter) begin
-	counter <= 1'b0;
+end else if (acceptdelay != 23'b0) begin
+	acceptdelay <= acceptdelay - 1'b1;
+	accept <= 1'b0;
 end
 else accept <= 1'b0;
 end
@@ -75,7 +79,7 @@ always @(negedge resetn or posedge clk) begin
 			state <= 1'b1;
 			if (sL) begin
 				case (asciiin)
-				7'd10: begin
+				7'd13: begin
 					// newline
 					cwren <= 1'b0;
 					futxl <= nlxl;
@@ -95,9 +99,9 @@ always @(negedge resetn or posedge clk) begin
 					futyl <= nyl;
 				end
 				endcase
-			end else begin
+			end else begin 
 				case (asciiin)
-				7'd10: begin
+				7'd13: begin
 					// newline
 					cwren <= 1'b0;
 					futxs <= nlxs;
@@ -116,11 +120,12 @@ always @(negedge resetn or posedge clk) begin
 					futxs <= nxs;
 					futys <= nys;
 				end
-				endcase
+				endcase 
 			end
 		end
 	end else begin
-		cwren <= 1'b0;
+		state <= 1'b0; 
+		cwren <= 1'b0; 
 		if (sL) begin
 			cyl <= futyl;
 			cxl <= futxl;
@@ -132,20 +137,20 @@ always @(negedge resetn or posedge clk) begin
 end
 
 // highlight logic
-reg [23:0] hlc;
+reg [24:0] hlc;
 assign hen = 1'b1;
 reg hlyes;
 always @(posedge clk) begin
 	
 	if (~resetn) begin
-		hlc <= 23'b01010000000000000000000;
+		hlc <= 24'b100101000000000000000000;
 		hlyes <= 1'b1;
 	end
 	else if (hlc != 23'b0) begin
-		hlc <= hlc - 23'b000000000000000000001;
+		hlc <= hlc - 24'b0000000000000000000001;
 	end
 	else begin
-		hlc <= 23'b01010000000000000000000;
+		hlc <= 24'b100101000000000000000000;
 		hlyes <= ~hlyes;
 	end
 end
