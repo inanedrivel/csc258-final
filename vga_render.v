@@ -31,7 +31,7 @@ module vga_render(input sL,
 				      output VGA_CLK,
 						output [15:0] DEBUG);
 parameter black = 6'b000000;
-parameter BORDER = 6'b101111;
+parameter BORDER = 6'b101010;
 /* 8 x 6 bit colour */				
 reg [47:0] linecols;
 /* 16 x 6 bit colour */
@@ -119,7 +119,7 @@ assign DEBUG = {10'b0, lincol};
 vga_controller vcontrol(
 					.vga_clock(vclk), 
 					.resetn(resetn), 
-					.pixel_colour(outcol), 
+					.pixel_colour(toutcol), 
 					.x(x),
 					.y(y),
 					.VGA_R(VGA_R),
@@ -217,7 +217,7 @@ module getnextCharandRowL(input [9:0] px,
 			begin 
 				cx <= px[9:4] + 1'b1;
 				cy <= py[8:4];
-				row <= 4'b1111;
+				row <= py[3:0];
 			end
 	end
 endmodule

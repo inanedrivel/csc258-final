@@ -1,6 +1,9 @@
 // Possibly the most annoying component of this project: searching.
-// This is a heavily brute force approach which is certainly not
-// register efficient.
+// Certainly not efficient, we will break this component down into:
+// - logic for the keyboard input
+// - logic to determine if two strings are equal in O(1)
+// - logic to compare string lengths.
+// - storing edit writes in memory
 // 
  module search_mode(	input sL,
 							input resetn,
@@ -21,115 +24,142 @@
 							output reg [5:0] hy,
 							output reg ho,
 							output hen,
-							output [7:0] DEBUG
+							output [27:0] DEBUG
 							);
+	parameter WRITETOMEMS = 7'd80;
+	parameter WRITETOMEML = 7'd40;
 
-	assign hen = counter != 12'd0;
+	parameter XRESETS = 7'd82;
+	parameter XRESETL = 7'd42;
 	
-	
+	// timing and syncronization
 	reg [12:0] counter;
-	assign ccol = clrin;
-	assign cy = sL ? 6'd29 : 6'd59;
+							
+	// search algorithm variables
+	reg [6:0] sizes, sizel;
+	reg [559:0] dataS, queryS;
+	reg [279:0] dataL, queryL;
+	reg [9:0] ssx, slx;
 	
+	wire [79:0] curHLS;
+	wire [39:0] curHLL;
+	// keyboard in variables
+	reg [9:0] futsx, futlx;
+	reg [22:0] acceptdelay;
+	reg accept;
+	reg state;
+	
+	
+	// edit in variables
+	
+	// memory conversions, read/write perms
 	wire [12:0] eaddrs, saddrs;
 	wire [10:0] eaddrl, saddrl;
 	wire [6:0] mascs, mascl;
 	reg sTen, lTen;
 	
-	reg [6:0] ssx, slx;
+	assign ccol = clrin;
+	assign cy = sL ? 6'd29 : 6'd59;
+	assign hen = counter != 12'd0;
 	
-	reg [559:0] dataS, queryS;
-	reg [4799:0] hlS;
-	reg [279:0] dataL, queryL;
-	reg [1199:0] hlL;
+	
 	
 	always @(*) begin
 		if (sL) begin 
 			lTen = editen;
 			sTen = 1'b0;
 			cx = slx;
-			ho = hlL[(hy << 3) + (hy << 5) + hx];
+			ho = curHLL[hx];
 		end 
 		else begin
 			lTen = 1'b0;
-			ho = hlS[(hy << 4) + (hy << 6) + hx];
+			ho = curHLS[hx];
 			sTen = editen;
 			cx = ssx;
 		end
 	end
 	
 	
-	largecoordstoaddr lcta(.x({1'b0, counter[5:0]}), 
-								  .y(counter[11:7]),
+	largecoordstoaddr lcta(.x(xl), 
+								  .y(yl),
 								  .addr(saddrl)); 
-	smallcoordstoaddr scta(.x(counter[6:0]), 
-								  .y(counter[12:8]),
-								  .addr(saddrs)); 	
+	smallcoordstoaddr scta(.x(xs), 
+								  .y(xl),
+								  .addr(saddrs));
+								
+	wire swriteR, lwriteR;
+	assign swriteR = (cx == WRITETOMEMS && counter[7]);
+	assign lwriteR = (cx == WRITETOMEML && counter[6]);
 	wire ms, ml;
 	matchS(.line(dataS),
 			 .pattern(queryS),
 			 .size(sizes),
-			 .offset(counter[6:0]),
+			 .offset(xs),
 			 .match(ms));
-	matchL(.line(dataL),
+	matchL mL(.line(dataL),
 			 .pattern(queryL),
 			 .size(sizel),
-			 .offset({1'b0, counter[5:0]}),
+			 .offset(xl),
 			 .match(ml));
-	reg rrdy;
-	reg rrrdy;
 	always @(posedge clk)
 	begin
 		if (~resetn) begin
 			hx <= 0;
 			hy <= 0;
-			rrdy <= 1'b0;
 			counter <= 13'd0;
 		end
 		else begin
 			if (((hx >= 39) && sL) || (hx >= 79)) begin
-				if (((hy >= 29) && sL) || (hy >= 59)) hy <= 0;
+				if (((hy >= 28) && sL) || (hy >= 58)) hy <= 0;
 				else hy <= hy + 1'b1;
 				hx <= 0;
 			end
 			else hx <= hx + 1'b1;
 		end
-		rrdy <= (counter == 13'd7679);
-		if (~resetn | rrdy) counter <= 13'd0;
+		if (~resetn | counter == 13'd7680) counter <= 13'd0;
 		else counter <= counter + 13'd1;
 	end
 	wire [6:0] xs, xl;
 	wire [5:0] ys, yl;
 	assign xs = counter[6:0];
-	assign xl = counter[5:0];
+	assign xl = {1'b0, counter[5:0]};
 	assign ys = counter[12:8];
 	assign yl = counter[11:7];
 	
 	always @(posedge clk)
 	begin
-		// small mode search 
-		// Devote counter[6:0] to be x-coordinate, this is an overestimate
-		// since we will gladly, for timing's sake, devote 48 cycles for
-		// computations and delays.
-		if (counter[7:0] < 7'd80) begin
-			dataS[(xs << 2) + (xs << 1) + xs +:7] <= mascs;
+		if (~counter[7]) begin
+			dataS[(xs << 2) + (xs << 1) + xs +: 7] <= mascs;
 		end
-		
-		if (counter[6:0] < 6'd40) begin
-			dataL[(xl << 2) + (xl << 1) + xl +:7] <= mascl;
+		if (~counter[6]) begin
+			dataL[(xl << 2) + (xl << 1) + xl +: 7] <= mascl;
 		end
 	end
+	reg [5:0] lxcc;
+	reg [6:0] sxcc;
+	
+	wire [79:0] stmask;
+	assign stmask = (((1 << sizes) - 1) << xs);
+	wire [39:0] ltmask;
+	assign ltmask = (((1 << sizel) - 1) << xl);
+	
+	reg [79:0] xbufs;
+	reg [39:0] xbufl;
 	
 	always @(posedge clk) begin
-		if (counter == 0) hlS <= 4800'd0;
+		if (counter == 0) begin
+		xbufs <= 80'd0;
+		xbufl <= 40'd0;
+		end
 		else  begin 
 			if (counter[7] == 1'b1) begin
-				if (ms && (counter[12:8] < 6'd59)) begin
+				if (xs == XRESETS) xbufs <= 80'b0;
+				else if (ms && (ys < 6'd59)) begin
 				// hlS[(ys << 6) + (yl << 4)+:80] = hlS[(ys << 6) + (yl << 4)+:80] | ((1 << (sizes + 1)) - 1) << ((ys << 6) + (ys << 4) + xs);
 			   // okay, so we have 80y + x...
 				// which is 64y + 16y + x + moffset.
-					// hlS[(ys << 6) + (ys << 4)+:80] <= (hlS[(ys << 6) + (ys << 4)+:80] | (((1 << (sizes + 1)) - 1) << xs));
-					hlS[(ys << 6) + (ys << 4) + xs] <= 1'b1;
+		
+					xbufs <= xbufs | stmask;
 				end
 			end
 		
@@ -141,8 +171,12 @@
 
 		/* post processing */
 			if (counter[6] == 1'b1) begin
-				if (ml && (counter[11:7] < 6'd29)) begin
-					hlL[(yl << 5) + (yl << 3)+:40] <= (hlL[(yl << 5) + (yl << 3)+:40] |(((1 << (sizel + 1)) - 1) << xl));
+				if (xl == XRESETL) xbufl <= 40'b0;
+				else if (ml && (yl < 6'd29)) begin
+					//for (lxcc = 0; lxcc < 40; lxcc = lxcc + 1) begin
+						//hlL[(yl << 5) + (yl << 3) + lxcc] <= (hlL[(yl << 5) + (yl << 3) + lxcc] | (lxcc >= xl && (lxcc <= (xl + sizel))));
+					//end
+					xbufl <= (xbufl | ltmask);
 				end
 			end
 		end
@@ -177,9 +211,9 @@
 		// TextMemoryL.INTENDED_DEVICE_FAMILY = "Cyclone V",
 		SeTextMemoryL.OPERATION_MODE = "DUAL_PORT",
 		SeTextMemoryL.WIDTHAD_A = 11,
-		SeTextMemoryL.NUMWORDS_A = 1160,
+		SeTextMemoryL.NUMWORDS_A = 1200,
 		SeTextMemoryL.WIDTHAD_B = 11,
-		SeTextMemoryL.NUMWORDS_B = 1160,
+		SeTextMemoryL.NUMWORDS_B = 1200,
 		SeTextMemoryL.OUTDATA_REG_B = "CLOCK1",
 		SeTextMemoryL.ADDRESS_REG_B = "CLOCK1",
 		SeTextMemoryL.CLOCK_ENABLE_INPUT_A = "BYPASS",
@@ -206,9 +240,9 @@
 		// TextMemoryS.INTENDED_DEVICE_FAMILY = "Cyclone V",
 		SeTextMemoryS.OPERATION_MODE = "DUAL_PORT",
 		SeTextMemoryS.WIDTHAD_A = 13,
-		SeTextMemoryS.NUMWORDS_A = 4720,
+		SeTextMemoryS.NUMWORDS_A = 4800,
 		SeTextMemoryS.WIDTHAD_B = 13,
-		SeTextMemoryS.NUMWORDS_B = 4720,
+		SeTextMemoryS.NUMWORDS_B = 4800,
 		SeTextMemoryS.OUTDATA_REG_B = "CLOCK1",
 		SeTextMemoryS.ADDRESS_REG_B = "CLOCK1",
 		SeTextMemoryS.CLOCK_ENABLE_INPUT_A = "BYPASS",
@@ -217,10 +251,64 @@
 		SeTextMemoryS.POWER_UP_UNINITIALIZED = "FALSE",
 		SeTextMemoryS.INIT_FILE = S_INITIAL_ASCII;
 		
-	reg accept;
-	reg state;
-	reg [6:0] futsx, futlx, sizes, sizel;
-	reg [22:0] acceptdelay;
+	altsyncram	HighlightML (
+				.wren_a (lwriteR),
+				.wren_b (gnd),
+				.clock0 (clk), // write clock
+				.clock1 (clk), // read clock
+				.clocken0 (vcc), // write enable clock
+				.clocken1 (vcc), // read enable clock				
+				.address_a (yl),
+				.address_b (hy),
+				.data_a (xbufl),
+				.q_b (curHLL)	// data out
+				);
+	defparam
+		HighlightML.WIDTH_A = 40,
+		HighlightML.WIDTH_B = 40,
+		// TextMemoryL.INTENDED_DEVICE_FAMILY = "Cyclone V",
+		HighlightML.OPERATION_MODE = "DUAL_PORT",
+		HighlightML.WIDTHAD_A = 6,
+		HighlightML.NUMWORDS_A = 29,
+		HighlightML.WIDTHAD_B = 6,
+		HighlightML.NUMWORDS_B = 29,
+		HighlightML.OUTDATA_REG_B = "CLOCK1",
+		HighlightML.ADDRESS_REG_B = "CLOCK1",
+		HighlightML.CLOCK_ENABLE_INPUT_A = "BYPASS",
+		HighlightML.CLOCK_ENABLE_INPUT_B = "BYPASS",
+		HighlightML.CLOCK_ENABLE_OUTPUT_B = "BYPASS",
+		HighlightML.POWER_UP_UNINITIALIZED = "FALSE";
+		
+	altsyncram	HighlightMS (
+				.wren_a (swriteR),
+				.wren_b (gnd),
+				.clock0 (clk), // write clock
+				.clock1 (clk), // read clock
+				.clocken0 (vcc), // write enable clock
+				.clocken1 (vcc), // read enable clock				
+				.address_a (ys),
+				.address_b (hy),
+				.data_a (xbufs),
+				.q_b (curHLS)	// data out
+				);
+	defparam
+		HighlightMS.WIDTH_A = 80,
+		HighlightMS.WIDTH_B = 80,
+		// TextMemoryS.INTENDED_DEVICE_FAMILY = "Cyclone V",
+		HighlightMS.OPERATION_MODE = "DUAL_PORT",
+		HighlightMS.WIDTHAD_A = 6,
+		HighlightMS.NUMWORDS_A = 59,
+		HighlightMS.WIDTHAD_B = 6,
+		HighlightMS.NUMWORDS_B = 59,
+		HighlightMS.OUTDATA_REG_B = "CLOCK1",
+		HighlightMS.ADDRESS_REG_B = "CLOCK1",
+		HighlightMS.CLOCK_ENABLE_INPUT_A = "BYPASS",
+		HighlightMS.CLOCK_ENABLE_INPUT_B = "BYPASS",
+		HighlightMS.CLOCK_ENABLE_OUTPUT_B = "BYPASS",
+		HighlightMS.POWER_UP_UNINITIALIZED = "FALSE";
+		
+
+		
 	always @(negedge resetn or 
 				posedge clk)
 	begin
@@ -236,15 +324,17 @@
 	end
 	else accept <= 1'b0;
 	end
+	// reg [6:0] iter;
 	
-	assign DEBUG = sizes;
+	reg [2:0] iter;
+	assign DEBUG = mascs;
 	// write logic
-	always @(negedge resetn or posedge clk) begin
+	always @(posedge clk) begin
 		if (~resetn) begin
-			ssx <= 7'b0;
-			slx <= 7'b0;
-			futsx <= 7'b0;
-			futlx <= 7'b0;
+			ssx <= 10'b0;
+			slx <= 10'b0;
+			futsx <= 10'b0;
+			futlx <= 10'b0;
 			state <= 1'b0;
 			sizes <= 7'b0;
 			sizel <= 7'b0;
@@ -262,18 +352,32 @@
 					end
 					7'd8: begin
 						// backspace
-						sizel <= (queryL[6:0] == 7'b0) ? 0 : slx - 1'b1;
+						sizel <= (slx == 7'b0) ? 0 : slx - 7'b0000001;
 						cwren <= 1'b1;
 						asciiout <= 7'd32;
-						futlx <= (slx == 7'b0) ? 0 : sizel - 1'b1;
-						queryL[(slx << 4) + (slx << 2) + slx +:7] <= 7'b0;
+						futlx <= (slx == 7'b0) ? 0 : sizel - 7'b0000001;
+//						queryL[(slx << 4) + (slx << 2) + slx + 6] <= 1'b0;
+//						queryL[(slx << 4) + (slx << 2) + slx + 5] <= 1'b0;
+//						queryL[(slx << 4) + (slx << 2) + slx + 4] <= 1'b0;
+//						queryL[(slx << 4) + (slx << 2) + slx + 3] <= 1'b0;
+//						queryL[(slx << 4) + (slx << 2) + slx + 2] <= 1'b0;
+//						queryL[(slx << 4) + (slx << 2) + slx + 1] <= 1'b0;
+//						queryL[(slx << 4) + (slx << 2) + slx] <= 1'b0;
+						queryL[(slx << 2) + (slx << 1) + slx +: 7] <= 7'b0;
 					end
 					default: begin
 						cwren <= 1'b1;
 						asciiout <= asciiin;
-						sizel <= (slx == 7'd39) ? sizel : sizel + 1'b1;
-						queryL[(slx << 4) + (slx << 2) + slx +:7] <= asciiin;
-						futlx <= (slx == 7'd39) ? 7'd39 : slx + 1'b1;
+						sizel <= (slx == 7'b0100111) ? sizel : sizel + 7'b0000001;
+//						queryL[(slx << 4) + (slx << 2) + slx + 6] <= asciiin[6];
+//						queryL[(slx << 4) + (slx << 2) + slx + 5] <= asciiin[5];
+//						queryL[(slx << 4) + (slx << 2) + slx + 4] <= asciiin[4];
+//						queryL[(slx << 4) + (slx << 2) + slx + 3] <= asciiin[3];
+//						queryL[(slx << 4) + (slx << 2) + slx + 2] <= asciiin[2];
+//						queryL[(slx << 4) + (slx << 2) + slx + 1] <= asciiin[1];
+//						//queryL[(slx << 4) + (slx << 2) + slx] <= asciiin[0];
+						queryL[(slx << 2) + (slx << 1) + slx +: 7] <= asciiin;
+						futlx <= (slx == 7'b0100111) ? 7'b0100111 : slx + 7'b0000001;
 					end
 					endcase
 				end else begin 
@@ -285,16 +389,30 @@
 						// backspace
 						cwren <= 1'b1;
 						asciiout <= 7'd32;
-						sizes <= (ssx == 7'b0) ? 0 : sizes - 1'b1;
+						sizes <= (ssx == 7'b0) ? 0 : ssx - 1'b1;
 						futsx <= (ssx == 7'b0) ? 0 : ssx - 1'b1;
-						queryS[(ssx << 4) + (ssx << 2) + ssx +:7] <= 7'b0;
+//						queryS[(ssx << 2) + (ssx << 1) + ssx + 6] <= 1'b0;
+//						queryS[(ssx << 2) + (ssx << 1) + ssx + 5] <= 1'b0;
+//						queryS[(ssx << 2) + (ssx << 1) + ssx + 4] <= 1'b0;
+//						queryS[(ssx << 2) + (ssx << 1) + ssx + 3] <= 1'b0;
+//						queryS[(ssx << 2) + (ssx << 1) + ssx + 2] <= 1'b0;
+//						queryS[(ssx << 2) + (ssx << 1) + ssx + 1] <= 1'b0;
+//						queryS[(ssx << 2) + (ssx << 1) + ssx] <= 1'b0;
+						queryS[(ssx << 2) + (ssx << 1) + ssx +: 7] <= 7'b0;
 					end
 					default: begin
 						cwren <= 1'b1;
 						asciiout <= asciiin;
-						sizes <= (ssx == 7'd79) ? sizes : sizes + 1'b1;
-						queryS[(ssx << 4) + (ssx << 2) + ssx +:7] <= asciiin;
-						futsx <= (ssx == 7'd79) ? 7'd79 : ssx + 1'b1;
+						sizes <= (ssx == 7'b1001111) ? sizes : sizes + 1'b1;
+//						queryS[(ssx << 4) + (ssx << 1) + ssx + 6] <= asciiin[6];
+//						queryS[(ssx << 4) + (ssx << 1) + ssx + 5] <= asciiin[5];
+//						queryS[(ssx << 4) + (ssx << 2) + ssx + 4] <= asciiin[4];
+//						queryS[(ssx << 4) + (ssx << 2) + ssx + 3] <= asciiin[3];
+//						queryS[(ssx << 4) + (ssx << 2) + ssx + 2] <= asciiin[2];
+//						queryS[(ssx << 4) + (ssx << 2) + ssx + 1] <= asciiin[1];
+//						queryS[(ssx << 4) + (ssx << 2) + ssx] <= asciiin[0];
+						queryS[(ssx << 2) + (ssx << 1) + ssx +: 7] <= asciiin;
+						futsx <= (ssx == 7'b1001111) ? 7'b1001111 : ssx + 1'b1;
 					end
 					endcase
 				end
@@ -321,13 +439,11 @@ module matchS( input [559:0] line,
 					input [6:0] size, 
 					input [6:0] offset,
 					output match);
-	wire [559:0] mask = (1 << ((size << 2) + (size << 1) + size + 1)) - 1;
+	wire [559:0] mask = (1 << ((size << 2) + (size << 1) + size)) - 1;
 	wire [559:0] reducedA, finalB;
-	wire [1119:0] plsdontask;
-	assign plsdontask = {line, 560'b0};
-	assign finalB = plsdontask[(offset << 2) + (offset << 1) + offset +:560] & mask;
+	assign finalB = (line >> 7 * offset) /*plsdontask[1120-(offset << 2) - (offset << 1) - offset -:560]*/ & mask;
 	assign reducedA = pattern & mask;
-	assign match = reducedA == finalB;
+	assign match = reducedA === finalB;
 endmodule
 
 module matchL( input [279:0] line,
@@ -336,11 +452,9 @@ module matchL( input [279:0] line,
 					input [6:0] offset,
 					output match);
 	wire [279:0] mask;
-	assign mask = (1 << ((size << 2) + (size << 1) + size + 1)) - 1;
+	assign mask = (1 << ((size << 2) + (size << 1) + size)) - 1;
 	wire [279:0] reducedA, finalB;
-	wire [559:0] plsdontask;
-	assign plsdontask = {280'b0, line};
-	assign finalB = plsdontask[(offset << 2) + (offset << 1) + offset +: 280] & mask;
+	assign finalB = (line >> (7 * offset)) & mask;
 	assign reducedA = pattern & mask;
-	assign match = reducedA == finalB;
+	assign match = reducedA === finalB;
 endmodule

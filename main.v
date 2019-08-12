@@ -44,7 +44,7 @@ module main(input CLOCK_50,
 	reg ui_wready;
 	reg ui_hready;
 	
-	wire [7:0] SIZEDBG;
+	wire [27:0] SIZEDBG;
 	
 	assign searchMode = SW[1];
 	assign largeMode = SW[0];
@@ -75,12 +75,12 @@ module main(input CLOCK_50,
 
 	
 	wire [15:0] VDBG;
-	hex_decoder h5(SIZEDBG[7:4], HEX5);
-	hex_decoder h4(SIZEDBG[3:0], HEX4);
-	hex_decoder h3(VDBG[7:4], HEX3);
-	hex_decoder h2(VDBG[3:0], HEX2);
-	hex_decoder h1({2'b0, vgclr[5:4]}, HEX1);
-	hex_decoder h0(vgclr[3:0], HEX0);
+	hex_decoder h5(SIZEDBG[23:20], HEX5);
+	hex_decoder h4(SIZEDBG[19:16], HEX4);
+	hex_decoder h3(SIZEDBG[15:12], HEX3);
+	hex_decoder h2(SIZEDBG[11:8], HEX2);
+	hex_decoder h1(SIZEDBG[7:4], HEX1);
+	hex_decoder h0(SIZEDBG[3:0], HEX0);
 	
 	vga_render va(.sL(largeMode),
 					  .resetn(resetn),
@@ -194,45 +194,7 @@ module main(input CLOCK_50,
 						 .ho(searchhlo),
 						 .hen(sehrdy),
 						 .DEBUG(SIZEDBG));
-	/*
-	edit_mode em(.sL(largeMode),
-					 .clk(),
-					 .asciiin(),
-					 .cx(),
-					 .cy(),
-					 .ccol(),
-					 .cascii(),
-					 .cwren(),
-					 .hx(),
-					 .hy(),
-					 .hen());
 	
-	search_mode em(.sL(largeMode),
-					 .clk(),
-					 .asciiin(),
-					 .editxin(),
-					 .edityin(),
-					 .editchar(),
-					 .cx(),
-					 .cy(),
-					 .ccol(),
-					 .cascii(),
-					 .cwren(),
-					 .hx(),
-					 .hy(),
-					 .hen());
-	
-	always @(*)
-	begin
-		if (searchMode) begin
-			// make the IM go through search mode 
-		end
-		else
-		begin
-			// make the IM go through edut mode 
-		end
-	end
-	*/
 endmodule
 
 /* stack overflow hexdec because i didnt have
